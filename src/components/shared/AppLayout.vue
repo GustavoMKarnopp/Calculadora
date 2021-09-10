@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="BotoesF2" cols="3">
-                    <button class="btsF2"> % </button>
+                    <button @click="porcento" class="btsF2"> % </button>
                     <button class="btsF2"> / </button>
                     <button class="btsF2"> X² </button>
                     <button class="btsF2"> ¹/x </button>
@@ -84,12 +84,26 @@
         methods:{
             deletarTudo(){
               this.valorAparente = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR APARENTE
-              console.log("O valor foi chamado!") //CONSOLE.LOG CHAMANDO O VALOR APARENTE!
+
+              //console.log("O valor foi chamado!") //CONSOLE.LOG CHAMANDO O VALOR APARENTE!
             },
             maisMenos(){
               this.valorAparente = this.valorAparente.charAt(0) === '-' // VERIFICA SE A VARIÁVEL É VAZIA, SE NÃO MANTE O VALOR SE SIM ADICIONA O "-"
               ? this.valorAparente.slice(1) : `-${this.valorAparente}`; // APÓS ADICIONADO O '-' ADIONA-SE O NUMERO OU MAIS E RETORNA NO DISPLAY
-            }
+            },
+            porcento(){
+              if(this.valorAparente === ''){ //VERIFICA SE O VALOR CAPTURADO NÃO É 'ZERO ' / '0'
+
+                this.valorAparente = 0;
+
+                console.log('Valor zero');
+
+              } else {
+
+                this.valorAparente = `${parseFloat(this.valorAparente) / 100}`;//PEGA O VALOR CAPTURADO NO DISPLAY E DIVIDE POR 100 '%'
+              }
+             // console.log('PORCENTAGEM FUNCIONANDO!')
+            },
         }
     }
 
