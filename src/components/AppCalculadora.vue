@@ -1,16 +1,12 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-       <AppLayout/>
+      <v-col class="text-center" cols="12">
+       <AppLayout class="Layout"/>
       </v-col>
       <!--
          <v-col cols="6">
         <AppResult/>
       </v-col>
       -->
-    </v-row>
-  </v-container>
 </template>
 
 <script>
@@ -29,6 +25,9 @@ import AppLayout from './shared/AppLayout.vue'
   }
 </script>
 <style>
-
+.Layout{
+  height: 200px;
+  margin-bottom: 0;
+}
 
 </style>
