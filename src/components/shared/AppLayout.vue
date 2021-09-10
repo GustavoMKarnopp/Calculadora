@@ -5,50 +5,51 @@
         </div > 
             <v-app cols="12" >
                 <div class="BotoesF1" cols="2">
-                 <button> MC </button>
-                  <button> MB </button>
-                  <button> M+ </button>
-                  <button> M- </button>
-                  <button> MS</button>
-                  <button> M</button>
+                 <button class="bts"> MC </button>
+                  <button class="bts"> MR </button>
+                  <button class="bts"> M+ </button>
+                  <button class="bts"> M- </button>
+                  <button class="bts"> MS </button>
+                  <button class="bts"> M </button>
                   
                 </div>
                 <div class="BotoesF2" cols="3">
-                  <button> X² </button>
-                  <button> X³ </button>
-                  <button> sin </button>
-                  <button> cos </button>
+                  <button class="btsF2"> % </button>
+                  <button class="btsF2"> / </button>
+                  <button class="btsF2"> X² </button>
+                  <button class="btsF2"> ¹/x </button>
                 </div>
+
                 <div class="BotoesInf">
                     <div class=" BotoesC1 " cols="3">
-                      <button> X² </button>
-                      <button> X³ </button>
-                      <button> sin </button>
-                      <button> cos </button>
+                      <button class="btsC1"> CE </button>
+                      <button class="btsC1"> C </button>
+                      <button class="btsC1"> DEL </button>
+                      <button class="btsC1"> / </button>
                     </div>
                     <div class="BotoesC2 " cols="3">
-                      <button> X² </button>
-                      <button> X³ </button>
-                      <button> sin </button>
-                      <button> cos </button>
+                      <button class="btsC1"> 7 </button>
+                      <button class="btsC1"> 8 </button>
+                      <button class="btsC1"> 9 </button>
+                      <button class="btsC1"> X </button>
                     </div>
                     <div class=" BotoesC3 " cols="3">
-                      <button> X² </button>
-                      <button> X³ </button>
-                      <button> sin </button>
-                      <button> cos </button>
+                      <button class="btsC1"> 4 </button>
+                      <button class="btsC1"> 5 </button>
+                      <button class="btsC1"> 6 </button>
+                      <button class="btsC1"> - </button>
                     </div>
                     <div class=" BotoesC4 " cols="3">
-                      <button> X² </button>
-                      <button> X³ </button>
-                      <button> sin </button>
-                      <button> cos </button>
+                      <button class="btsC1"> 1 </button>
+                      <button class="btsC1">  2</button>
+                      <button class="btsC1"> 3 </button>
+                      <button class="btsC1"> + </button>
                     </div>
                     <div class=" BotoesC5 " cols="3">
-                      <button> X² </button>
-                      <button> X³ </button>
-                      <button> sin </button>
-                      <button> cos </button>
+                      <button class="btsC1"> +- </button>
+                      <button class="btsC1"> 0 </button>
+                      <button class="btsC1"> , </button>
+                      <button class="btsC1"> = </button>
                     </div>
                 </div>
             </v-app>  
@@ -70,15 +71,8 @@ export default {
   width: 100%;
 }
 
-  /* ------------------------------CONFIGURAÇÃO do TABLET---------------------------------- */
 
- @media (min-width: 768px){
-    button {
-      margin: 15px;
-      width:50px;
- 
-  }
-  }
+  
     /* ------------------------------CONFIGURAÇÃO do MOBILE---------------------------------- */
 
   @media (min-width: 320px){
@@ -88,12 +82,43 @@ export default {
       height: 53px;
   }
   }
-
   @media (min-width: 320px){
   .header{
-     position: fixed;
+    position: fixed;
+  }
+  .btsF2{
+    margin:0px 10px 7px 20px;
+  }
+  .btsC1{
+    margin:0px 10px 7px 20px;
   }
   }
+
+/* ------------------------------CONFIGURAÇÃO do TABLET---------------------------------- */
+
+    @media (min-width: 768px){
+      button {
+        margin: 10px;
+        width:auto;
+        height: 37px;
+      }
+      .header{
+       position: fixed;
+      }
+  
+    /* ------------------------------CONFIGURAÇÃO DO HEADER ----------------------------------- */
+      .header{
+        margin-left:  35%;
+        width: 30%;
+        background-color: #f5f0f0;
+      }
+      .btsC1{
+        margin:5px 31px 13px 14px;;
+      }
+      .btsF2{
+       margin:0px 20px 2px 30px;
+      }
+    }
   /* ------------------------------CONFIGURAÇÃO do DESKTOP---------------------------------- */
    @media (min-width: 1024px){
     button {
@@ -103,14 +128,25 @@ export default {
     }
     .header{
      position: fixed;
-  }
+    }
+
   /* ------------------------------CONFIGURAÇÃO DO HEADER ----------------------------------- */
     .header{
       margin-left:  35%;
       width: 30%;
       background-color: #f5f0f0;
     }
+    .btsC1{
+    margin:20px 40px 2px 35px ;
   }
+    .btsF2{
+    margin:20px 40px 2px 35px ;
+  }
+  .bts{
+    margin:20px 15px 2px 25px;
+  }
+  }
+  
 
 /*----------------------------------BOTÕES DA CALCULADORA FILEIRAS 1 E 2---------------------------------------- */
 
