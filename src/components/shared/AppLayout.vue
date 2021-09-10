@@ -5,8 +5,11 @@
           <div class="nome">
               <h3>CALCULADORA</h3>
           </div>
+          <div class="Resultado">
+            <h3 class="result">RESULTADO</h3><!--ARRUMAR O LAYOUT-->
+          </div>
           <div class="Valores">
-              <h2>{{valor}}</h2>
+              <h2>Valor</h2>
           </div>    
         </div > 
       </v-container>
@@ -64,21 +67,11 @@
     </main>
 </template>
 <script>
-export default {
-  data: () => ({
-    props:{
-      valor: 1
-    }
-  })
-}
 </script>
 <style>
 
 /* ------------------------------CONFIGURA O DISPLAY----------------------------------- */
-.display{
-  height: 200px;
-  width: 100%;
-}
+
     /* ------------------------------CONFIGURAÇÃO do MOBILE---------------------------------- */
 
   @media (min-width: 320px){
@@ -92,6 +85,10 @@ export default {
   .header{
     position: fixed;
   }
+  .display{
+  height: 175px;
+  width: 100%;
+}
   .btsF2{
     margin:0px 10px 7px 20px;
   }
@@ -102,7 +99,7 @@ export default {
       float: right;
       width: 100%;
       height: 50px; 
-      margin-top: 130px;
+      margin-top: 80px;
       bottom:0;
       padding-bottom: 0;
     }
@@ -110,8 +107,19 @@ export default {
       font-size: 25px;
       float: right;
     }
-}
-
+    .result{
+      float: right;
+    }
+     h2{
+      float: right;
+      
+    }
+    .result{
+      float: right;
+    }
+    .nome{
+      background-color:  #e6dfdf ;
+    }
 /* ------------------------------CONFIGURAÇÃO do TABLET---------------------------------- */
 
     @media (min-width: 768px){
@@ -129,9 +137,12 @@ export default {
         margin-left:  35%;
         width: 30%;
         background-color: #f5f0f0;
+      }.display{
+        height: 200px;
+        width: 100%;
       }
       .btsC1{
-        margin:5px 31px 13px 14px;;
+        margin: 0px 30px 13px 14px;
       }
       .btsF2{
        margin:0px 20px 2px 30px;
@@ -140,13 +151,31 @@ export default {
         float: right;
         width: 100%;
         height: 50px; 
-        margin-top: 130px;
+        margin-top: 80px;
         bottom:0;
         padding-bottom: 0;
     }
       h2{
         font-size: 25px;
         float: right;
+    }
+    .result{
+      float: right;
+    }
+    .Resultado{
+      font-size: 25px;
+      width: 100%;
+      height: 50px; 
+    }
+     h2{
+      float: right;
+      
+    }
+    .result{
+      float: right;
+    }
+    .nome{
+      background-color:  #e6dfdf ;
     }
     }
   /* ------------------------------CONFIGURAÇÃO do DESKTOP---------------------------------- */
@@ -166,6 +195,10 @@ export default {
       width: 30%;
       background-color: #f5f0f0;
     }
+    .display{
+      height: 200px;
+      width: 100%;
+    }
     .bts{
          margin:0px 15px 2px 25px;
       }
@@ -179,40 +212,46 @@ export default {
       float: right;
       width: 100%;
       height: 50px; 
-      margin-top: 130px;
+      margin-top: 60px;
       bottom:0;
       padding-bottom: 0;
     }
     h2{
       float: right;
-      font-size: 25px;
+      
+    }
+    .result{
+      float: right;
+    }
+    .nome{
+      background-color:  #e6dfdf ;
     }
    }
 
 /*----------------------------------BOTÕES DA CALCULADORA FILEIRAS 1 E 2---------------------------------------- */
 
-.BotoesF1{
-  background-color:  #f5f0f0;
-  border-bottom: 2px solid #e6dfdf;
+    .BotoesF1{
+      background-color:  #f5f0f0;
+      border-bottom: 2px solid #e6dfdf;
+    }
+    .BotoesF2{
+      background-color:  #f5f0f0 ;
+    }
+    /*----------------------------------BOTÕES DA CALCULADORA COLUNAS 1 ATÉ 5---------------------------------------- */
+    .BotoesC1{
+      background-color:  #e6dfdf ;
+    }
+    .BotoesC2{
+      background-color:  #e6dfdf ;
+    }
+    .BotoesC3{
+      background-color:  #e6dfdf ;
+    }
+    .BotoesC4{
+      background-color:  #e6dfdf ;
+    }
+    .BotoesC5{
+      background-color:  #e6dfdf ;
+    }
 }
-.BotoesF2{
-  background-color:  #f5f0f0 ;
-}
-/*----------------------------------BOTÕES DA CALCULADORA COLUNAS 1 ATÉ 5---------------------------------------- */
-.BotoesC1{
-  background-color:  #e6dfdf ;
-}
-.BotoesC2{
-  background-color:  #e6dfdf ;
-}
-.BotoesC3{
-  background-color:  #e6dfdf ;
-}
-.BotoesC4{
-  background-color:  #e6dfdf ;
-}
-.BotoesC5{
-  background-color:  #e6dfdf ;
-}
-
 </style>
