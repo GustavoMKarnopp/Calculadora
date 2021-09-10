@@ -1,55 +1,26 @@
 <template>
-    <main>
-          <div cols="2.4">
-            <div class="display">
-              <div>Ola Mundo</div>
-            </div>
-            <div class="Fila1">
-              <button> MC </button>
-              <button> MB </button>
-              <button> M+ </button>
-              <button> M- </button>
-              <button> MS</button>
-              <button> M</button>
-              
-            </div>
-            <div class=" Fila2 ">
-              <button> X² </button>
-              <button> X³ </button>
-              <button> sin </button>
-              <button> cos </button>
-              <button> tan </button>
-              
-            </div>
-            <div class="Fila3">
-              <button> / </button>
-              <button> 8 </button>
-              <button> 9 </button>
-              <button> X </button>
-              
-            </div>
-            <div class="Fila4">
-              <button> 4 </button>
-              <button> 5 </button>
-              <button> 6 </button>
-              <button> - </button>
-              
-            </div>
-            <div class="Fila5">
-              <button> 1 </button>
-              <button> 2 </button>
-              <button> 3 </button>
-              <button> + </button>
-              
-            </div>
-            <div class="Fila6">
-              <button> +/- </button>
-              <button> 0 </button>
-              <button> . </button>
-              <button> = </button>
-              
-            </div>
-          </div>       
+    <main class="header">
+        <div class="display">
+           <div>Ola Mundo</div>
+        </div> 
+            <v-app cols="12" >
+                <div class="BotoesF1" cols="2">
+                 <button> MC </button>
+                  <button> MB </button>
+                  <button> M+ </button>
+                  <button> M- </button>
+                  <button> MS</button>
+                  <button> M</button>
+                  
+                </div>
+                <div class="BotoesF2" cols="3">
+                  <button> X² </button>
+                  <button> X³ </button>
+                  <button> sin </button>
+                  <button> cos </button>
+                </div>
+            </v-app>  
+
     </main>
 </template>
 <script>
@@ -57,15 +28,52 @@ export default {
     
 }
 </script>
-
 <style>
+main{
+  margin: 0;
+  padding: 0;
+  background-color: #e6dfdf;
 
-button{
-    float: right;
-    height: 50px;
-    width: 110px;
-    margin: 15px;
-    background-color: rgb(44, 44, 44);
+}
+.display{
+  height: 200px;
+  width: 100%;
+}
+
+
+ @media (min-width: 768px){
+    button {
+      height: 30px;
+      margin: 15px;
+      width:50px;
+      
+  }
+  }
+  @media (min-width: 320px){
+    button {
+      
+      margin: 3px;
+      width: 50px;
+      
+  }
+  }
+   @media (min-width: 1024px){
+    button {
+      height: 10px;
+      margin: 35px;
+      width:50px;
+      
+  }
+  }
+/*----------------------------------BOTÕES DA CALCULADORA---------------------------------------- */
+
+.BotoesF1{
+  background-color:  #e6dfdf;
+  border-bottom: 2px solid #838282;
+}
+.BotoesF2{
+  background-color:  #e6dfdf ;
+  border-bottom: 2px solid #838282;
 }
 
 </style>
