@@ -1,8 +1,15 @@
 <template>
     <main class=" header">
+      <v-container>
         <div class="display">
-           <div>Ola Mundo</div>
+          <div class="nome">
+              <h3>CALCULADORA</h3>
+          </div>
+          <div class="Valores">
+              <h2>{{valor}}</h2>
+          </div>    
         </div > 
+      </v-container>
             <v-app cols="12" >
                 <div class="BotoesF1" cols="2">
                  <button class="bts"> MC </button>
@@ -40,7 +47,7 @@
                       <button class="btsC1"> - </button>
                     </div>
                     <div class=" BotoesC4 " cols="3">
-                      <button class="btsC1"> 1 </button>
+                      <button v-on:click="valor += 1" class="btsC1"> 1 </button>
                       <button class="btsC1">  2</button>
                       <button class="btsC1"> 3 </button>
                       <button class="btsC1"> + </button>
@@ -58,21 +65,20 @@
 </template>
 <script>
 export default {
-    
+  data: () => ({
+    props:{
+      valor: 1
+    }
+  })
 }
 </script>
 <style>
-  
-
 
 /* ------------------------------CONFIGURA O DISPLAY----------------------------------- */
 .display{
   height: 200px;
   width: 100%;
 }
-
-
-  
     /* ------------------------------CONFIGURAÇÃO do MOBILE---------------------------------- */
 
   @media (min-width: 320px){
@@ -92,7 +98,19 @@ export default {
   .btsC1{
     margin:0px 10px 7px 20px;
   }
-  }
+  .Valores{
+      float: right;
+      width: 100%;
+      height: 50px; 
+      margin-top: 130px;
+      bottom:0;
+      padding-bottom: 0;
+    }
+  h2{
+      font-size: 25px;
+      float: right;
+    }
+}
 
 /* ------------------------------CONFIGURAÇÃO do TABLET---------------------------------- */
 
@@ -118,6 +136,18 @@ export default {
       .btsF2{
        margin:0px 20px 2px 30px;
       }
+      .Valores{
+        float: right;
+        width: 100%;
+        height: 50px; 
+        margin-top: 130px;
+        bottom:0;
+        padding-bottom: 0;
+    }
+      h2{
+        font-size: 25px;
+        float: right;
+    }
     }
   /* ------------------------------CONFIGURAÇÃO do DESKTOP---------------------------------- */
    @media (min-width: 1024px){
@@ -136,17 +166,28 @@ export default {
       width: 30%;
       background-color: #f5f0f0;
     }
+    .bts{
+         margin:0px 15px 2px 25px;
+      }
+      .btsF2{
+        margin:12px 40px 2px 35px ;
+      }
     .btsC1{
-    margin:20px 40px 2px 35px ;
-  }
-    .btsF2{
-    margin:20px 40px 2px 35px ;
-  }
-  .bts{
-    margin:20px 15px 2px 25px;
-  }
-  }
-  
+      margin: 20px 40px 2px 35px ;
+    }
+    .Valores{
+      float: right;
+      width: 100%;
+      height: 50px; 
+      margin-top: 130px;
+      bottom:0;
+      padding-bottom: 0;
+    }
+    h2{
+      float: right;
+      font-size: 25px;
+    }
+   }
 
 /*----------------------------------BOTÕES DA CALCULADORA FILEIRAS 1 E 2---------------------------------------- */
 
