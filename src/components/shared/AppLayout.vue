@@ -9,68 +9,92 @@
             <h3 class="result">RESULTADO</h3><!--ARRUMAR O LAYOUT-->
           </div>
           <div class="Valores">
-              <h2>Valor</h2>
+              <h2>{{ valorAparente || '0' }}</h2>
           </div>    
         </div > 
       </v-container>
             <v-app cols="12" >
+
                 <div class="BotoesF1" cols="2">
-                 <button class="bts"> MC </button>
-                  <button class="bts"> MR </button>
-                  <button class="bts"> M+ </button>
-                  <button class="bts"> M- </button>
-                  <button class="bts"> MS </button>
-                  <button class="bts"> M </button>
-                  
+                    <button class="bts"> MC </button>
+                    <button class="bts"> MR </button>
+                    <button class="bts"> M+ </button>
+                    <button class="bts"> M- </button>
+                    <button class="bts"> MS </button>
+                    <button class="bts"> M </button>                  
                 </div>
+
                 <div class="BotoesF2" cols="3">
-                  <button class="btsF2"> % </button>
-                  <button class="btsF2"> / </button>
-                  <button class="btsF2"> X² </button>
-                  <button class="btsF2"> ¹/x </button>
+                    <button class="btsF2"> % </button>
+                    <button class="btsF2"> / </button>
+                    <button class="btsF2"> X² </button>
+                    <button class="btsF2"> ¹/x </button>
                 </div>
 
                 <div class="BotoesInf">
+
                     <div class=" BotoesC1 " cols="3">
-                      <button class="btsC1"> CE </button>
-                      <button class="btsC1"> C </button>
-                      <button class="btsC1"> DEL </button>
-                      <button class="btsC1"> / </button>
+                        <button class="btsC1"> CE </button>
+                        <button @click="deletarTudo" class="btsC1"> C </button> <!--//RESPONSÁVEL POR  DELETAR O VALOR TOTAL-->
+                        <button class="btsC1"> DEL </button>
+                        <button class="btsC1"> / </button>
                     </div>
+
                     <div class="BotoesC2 " cols="3">
-                      <button class="btsC1"> 7 </button>
-                      <button class="btsC1"> 8 </button>
-                      <button class="btsC1"> 9 </button>
-                      <button class="btsC1"> X </button>
+                        <button class="btsC1"> 7 </button>
+                        <button class="btsC1"> 8 </button>
+                        <button class="btsC1"> 9 </button>
+                        <button class="btsC1"> X </button>
                     </div>
+
                     <div class=" BotoesC3 " cols="3">
-                      <button class="btsC1"> 4 </button>
-                      <button class="btsC1"> 5 </button>
-                      <button class="btsC1"> 6 </button>
-                      <button class="btsC1"> - </button>
+                        <button class="btsC1"> 4 </button>
+                        <button class="btsC1"> 5 </button>
+                        <button class="btsC1"> 6 </button>
+                        <button class="btsC1"> - </button>
                     </div>
+                    
                     <div class=" BotoesC4 " cols="3">
-                      <button v-on:click="valor += 1" class="btsC1"> 1 </button>
-                      <button class="btsC1">  2</button>
-                      <button class="btsC1"> 3 </button>
-                      <button class="btsC1"> + </button>
+                        <button class="btsC1"> 1 </button>
+                        <button class="btsC1">  2</button>
+                        <button class="btsC1"> 3 </button>
+                        <button class="btsC1"> + </button>
                     </div>
                     <div class=" BotoesC5 " cols="3">
-                      <button class="btsC1"> +- </button>
-                      <button class="btsC1"> 0 </button>
-                      <button class="btsC1"> , </button>
-                      <button class="btsC1"> = </button>
+                        <button @click="maisMenos" class="btsC1"> +- </button>
+                        <button class="btsC1"> 0 </button>
+                        <button class="btsC1"> , </button>
+                        <button class="btsC1"> = </button>
                     </div>
+
                 </div>
             </v-app>  
-
     </main>
 </template>
 <script>
+    export default {
+        data(){
+          return{
+            valorAparente : '', //RETORNA O VALOR "123" OU "ZERO = ( '0' )" QUANDO NÃO TIVER VALOR DENTRO!
+            ultimoNumero: null, // NÚMERO QUE FOI CLICADO ANTERIORMENTE
+            operador: null, // FUNCIONALIDADE DO OPERADOR
+            clickOperador: false // OPERADOR SELECIONADO
+          };
+        },
+        methods:{
+            deletarTudo(){
+              this.valorAparente = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR APARENTE
+              console.log("O valor foi chamado!") //CONSOLE.LOG CHAMANDO O VALOR APARENTE!
+            },
+            maisMenos(){
+              this.valorAparente = this.valorAparente.charAt(0) === '-' // VERIFICA SE A VARIÁVEL É VAZIA, SE NÃO MANTE O VALOR SE SIM ADICIONA O "-"
+              ? this.valorAparente.slice(1) : `-${this.valorAparente}`; // APÓS ADICIONADO O '-' ADIONA-SE O NUMERO OU MAIS E RETORNA NO DISPLAY
+            }
+        }
+    }
+
 </script>
 <style>
-
-/* ------------------------------CONFIGURA O DISPLAY----------------------------------- */
 
     /* ------------------------------CONFIGURAÇÃO do MOBILE---------------------------------- */
 
@@ -137,7 +161,9 @@
         margin-left:  35%;
         width: 30%;
         background-color: #f5f0f0;
-      }.display{
+      }
+      /* ------------------------------CONFIGURA O DISPLAY----------------------------------- */
+      .display{
         height: 200px;
         width: 100%;
       }
@@ -195,6 +221,7 @@
       width: 30%;
       background-color: #f5f0f0;
     }
+    /* ------------------------------CONFIGURA O DISPLAY----------------------------------- */
     .display{
       height: 200px;
       width: 100%;
