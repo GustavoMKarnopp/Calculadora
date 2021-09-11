@@ -9,7 +9,7 @@
             <h3 class="result">RESULTADO</h3><!--ARRUMAR O LAYOUT-->
           </div>
           <div class="Valores">
-              <h2>{{ valorAparente || '0' }}</h2>
+              <h2>{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
           </div>    
         </div > 
       </v-container>
@@ -41,28 +41,28 @@
                     </div>
 
                     <div class="BotoesC2 " cols="3">
-                        <button class="btsC1"> 7 </button>
-                        <button class="btsC1"> 8 </button>
-                        <button class="btsC1"> 9 </button>
+                        <button @click="numero('7')" class="btsC1"> 7 </button>
+                        <button @click="numero('8')" class="btsC1"> 8 </button>
+                        <button @click="numero('9')" class="btsC1"> 9 </button>
                         <button class="btsC1"> X </button>
                     </div>
 
                     <div class=" BotoesC3 " cols="3">
-                        <button class="btsC1"> 4 </button>
-                        <button class="btsC1"> 5 </button>
-                        <button class="btsC1"> 6 </button>
+                        <button @click="numero('4')" class="btsC1"> 4 </button>
+                        <button @click="numero('5')" class="btsC1"> 5 </button>
+                        <button @click="numero('6')" class="btsC1"> 6 </button>
                         <button class="btsC1"> - </button>
                     </div>
                     
                     <div class=" BotoesC4 " cols="3">
-                        <button class="btsC1"> 1 </button>
-                        <button class="btsC1">  2</button>
-                        <button class="btsC1"> 3 </button>
+                        <button @click="numero('1')" class="btsC1"> 1 </button>
+                        <button @click="numero('2')" class="btsC1"> 2 </button>
+                        <button @click="numero('3')" class="btsC1"> 3 </button>
                         <button class="btsC1"> + </button>
                     </div>
                     <div class=" BotoesC5 " cols="3">
                         <button @click="maisMenos" class="btsC1"> +- </button>
-                        <button class="btsC1"> 0 </button>
+                        <button @click="numero('0')" class="btsC1"> 0 </button>
                         <button class="btsC1"> , </button>
                         <button class="btsC1"> = </button>
                     </div>
@@ -96,13 +96,22 @@
 
                 this.valorAparente = 0;
 
-                console.log('Valor zero');
+                //console.log('Valor zero'); // VERIFICAÇÃO DE RETORNO
 
               } else {
 
                 this.valorAparente = `${parseFloat(this.valorAparente) / 100}`;//PEGA O VALOR CAPTURADO NO DISPLAY E DIVIDE POR 100 '%'
               }
              // console.log('PORCENTAGEM FUNCIONANDO!')
+            },
+            /* VERIFICAR AMANHA A LÓGICA */
+            numero(valor){
+                if(this.clickOperador){
+                  this.valorAparente = '';
+                  this.clickOperador = false;
+                }
+
+                this.valorAparente =`${this.valorAparente}${valor}`;
             },
         }
     }
