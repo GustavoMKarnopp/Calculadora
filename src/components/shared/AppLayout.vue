@@ -6,7 +6,7 @@
               <h3>CALCULADORA</h3>
           </div>
           <div class="Resultado">
-            <h3 class="result">RESULTADO</h3><!--ARRUMAR O LAYOUT-->
+            <h3 class="result">{{resultadoCalc}}</h3><!--ARRUMAR O LAYOUT-->
           </div>
           <div class="Valores">
               <h2>{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
@@ -37,7 +37,7 @@
                         <button class="btsC1"> CE </button>
                         <button @click="deletarTudo" class="btsC1"> C </button> <!--//RESPONSÁVEL POR  DELETAR O VALOR TOTAL-->
                         <button class="btsC1"> DEL </button>
-                        <button class="btsC1"> / </button>
+                        <button @click="divisao" class="btsC1"> / </button>
                     </div>
 
                     <div class="BotoesC2 " cols="3">
@@ -63,8 +63,8 @@
                     <div class=" BotoesC5 " cols="3">
                         <button @click="maisMenos" class="btsC1"> +- </button>
                         <button @click="numero('0')" class="btsC1"> 0 </button>
-                        <button class="btsC1"> , </button>
-                        <button class="btsC1"> = </button>
+                        <button @click="virgula" class="btsC1"> , </button>
+                        <button @click="Calc" class="btsC1"> = </button>
                     </div>
 
                 </div>
@@ -75,9 +75,14 @@
     export default {
         data(){
           return{
+            resultadoCalc: '', //MOSTRA O RESULTADO DOS CALCULOS
+
             valorAparente : '', //RETORNA O VALOR "123" OU "ZERO = ( '0' )" QUANDO NÃO TIVER VALOR DENTRO!
+
             ultimoNumero: null, // NÚMERO QUE FOI CLICADO ANTERIORMENTE
+
             operador: null, // FUNCIONALIDADE DO OPERADOR
+
             clickOperador: false // OPERADOR SELECIONADO
           };
         },
@@ -104,15 +109,54 @@
               }
              // console.log('PORCENTAGEM FUNCIONANDO!')
             },
-            /* VERIFICAR AMANHA A LÓGICA */
+
             numero(valor){
-                if(this.clickOperador){
-                  this.valorAparente = '';
-                  this.clickOperador = false;
+                if(this.clickOperador){ // SE O CLICK OPERADOR FOR CLICADO 
+                  this.valorAparente = ''; // ELE IRÁ PASSARÁ O valorAparente VAZIO OU SEJA "0"
+                  this.clickOperador = false; // E BUSCARÁ O clickOperador  E PASSARÁ O VALOR "0"
                 }
 
-                this.valorAparente =`${this.valorAparente}${valor}`;
+                this.valorAparente =`${this.valorAparente}${valor}`; // PEGA O valor E CONCATENA COM O valorAparente FAZENDO O valorAparente RECEBER O VALOR COMCATENADO.
             },
+
+            //------------------------------CORRIGINDO BUG VÍRGULA----------------------------------------------------------
+
+            virgula(){
+                if(this.valorAparente.indexOf(',') === -1 ){
+                  this.numero(',');
+                  
+           /* FAZER A LÓGICA PARA QUE SO ZERO PUCHE AUTOMÁTICO QUANDO UTILIZADO A PORCENTAGEM SER UM NUMERO ANTES DA VIRGULA */
+
+                }
+            
+            },
+
+/* A FUNÇÃO setValue() SERÁ CHAMADA DENTRO DAS FUNÇÕE  DE OPERAÇÕES */
+            setValue(){
+
+                this.ultimoNumero = this.valorAparente; //A VARIAVEL ultimoNumero IRÁ RECEBER O VALOR DIGITADO ATUAL;
+                this.clickOperador = true; // O CLICK NO OPERADOR QUE ÉRA FALSO AGORA É VERDADEIRO.
+
+            },
+ 
+ /* FUNÇÃO QUE APLICA O RESULTADO EM TELA */
+            Calc(){
+                this.resultadoCalc = `${this.operador( // DISPLAY RECEBE A OPERAÇÃO
+                    parseFloat(this.ultimoNumero), // VALOR DO ULTIMO NUMERO CLICADO
+                    parseFloat(this.valorAparente), // VALOR DO NUMERO ATUAL
+                )}`;
+                this.ultimoNumero = null; 
+
+//*************************DEVERÁ SER CRIADO UM EVENTO QUE DELETA O VALOR DA TELA DO RESULTADO.*****************************
+
+            },
+
+            divisao(){
+              this.operador = (value1, value2) => value1 / value2;
+              this.setValue();
+            },
+
+
         }
     }
 
