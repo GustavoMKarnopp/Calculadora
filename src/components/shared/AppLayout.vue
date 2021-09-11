@@ -6,7 +6,7 @@
               <h3>CALCULADORA</h3>
           </div>
           <div class="Resultado">
-            <h3 class="result">{{resultadoCalc}}</h3><!--ARRUMAR O LAYOUT-->
+            <h3 class="result">{{resultadoCalc || '0'}}</h3><!--ARRUMAR O LAYOUT-->
           </div>
           <div class="Valores">
               <h2>{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
@@ -36,7 +36,7 @@
                     <div class=" BotoesC1 " cols="3">
                         <button class="btsC1"> CE </button>
                         <button @click="deletarTudo" class="btsC1"> C </button> <!--//RESPONSÁVEL POR  DELETAR O VALOR TOTAL-->
-                        <button class="btsC1"> DEL </button>
+                        <button @click="DeleteUm" class="btsC1"> DEL </button>
                         <button @click="divisao" class="btsC1"> / </button>
                     </div>
 
@@ -92,15 +92,19 @@
               this.resultadoCalc = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR RESULTADO
               //console.log("O valor foi chamado!") //CONSOLE.LOG CHAMANDO O VALOR APARENTE!
             },
+            DeleteUm(){
+              this.valorAparente = this.valorAparente.substr(1); //VERIFICAR A UTILIZAÇÃO DESTA PROPRIEDADE
+              this.valorAparente
+
+            },
             maisMenos(){
-              this.valorAparente = this.valorAparente.charAt(0) === '-' // VERIFICA SE A VARIÁVEL É VAZIA, SE NÃO MANTE O VALOR SE SIM ADICIONA O "-"
+              this.valorAparente = this.valorAparente.charAt(0) === '-' // VERIFICA SE A VARIÁVEL É VAZIA, SE NÃO MANTEM O VALOR SE SIM ADICIONA O "-"
               ? this.valorAparente.slice(1) : `-${this.valorAparente}`; // APÓS ADICIONADO O '-' ADIONA-SE O NUMERO OU MAIS E RETORNA NO DISPLAY
             },
             porcento(){
               if(this.valorAparente === ''){ //VERIFICA SE O VALOR CAPTURADO NÃO É 'ZERO ' / '0'
 
                 this.valorAparente = 0;
-
                 //console.log('Valor zero'); // VERIFICAÇÃO DE RETORNO
 
               } else {
