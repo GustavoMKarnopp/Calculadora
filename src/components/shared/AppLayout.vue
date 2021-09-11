@@ -27,7 +27,7 @@
                 <div class="BotoesF2" cols="3">
                     <button @click="porcento" class="btsF2"> % </button>
                     <button class="btsF2"> / </button>
-                    <button class="btsF2"> X² </button>
+                    <button  class="btsF2"> X² </button>
                     <button class="btsF2"> ¹/x </button>
                 </div>
 
@@ -44,21 +44,21 @@
                         <button @click="numero('7')" class="btsC1"> 7 </button>
                         <button @click="numero('8')" class="btsC1"> 8 </button>
                         <button @click="numero('9')" class="btsC1"> 9 </button>
-                        <button class="btsC1"> X </button>
+                        <button @click="multiplicar" class="btsC1"> X </button>
                     </div>
 
                     <div class=" BotoesC3 " cols="3">
                         <button @click="numero('4')" class="btsC1"> 4 </button>
                         <button @click="numero('5')" class="btsC1"> 5 </button>
                         <button @click="numero('6')" class="btsC1"> 6 </button>
-                        <button class="btsC1"> - </button>
+                        <button @click="subtrair" class="btsC1"> - </button>
                     </div>
                     
                     <div class=" BotoesC4 " cols="3">
                         <button @click="numero('1')" class="btsC1"> 1 </button>
                         <button @click="numero('2')" class="btsC1"> 2 </button>
                         <button @click="numero('3')" class="btsC1"> 3 </button>
-                        <button class="btsC1"> + </button>
+                        <button @click="adicao" class="btsC1"> + </button>
                     </div>
                     <div class=" BotoesC5 " cols="3">
                         <button @click="maisMenos" class="btsC1"> +- </button>
@@ -89,7 +89,7 @@
         methods:{
             deletarTudo(){
               this.valorAparente = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR APARENTE
-
+              this.resultadoCalc = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR RESULTADO
               //console.log("O valor foi chamado!") //CONSOLE.LOG CHAMANDO O VALOR APARENTE!
             },
             maisMenos(){
@@ -139,24 +139,41 @@
 
             },
  
- /* FUNÇÃO QUE APLICA O RESULTADO EM TELA */
+ /* FUNÇÃO QUE APLICA O RESULTADO EM TELA  """ = """ */
+
+
             Calc(){
-                this.resultadoCalc = `${this.operador( // DISPLAY RECEBE A OPERAÇÃO
+                  this.resultadoCalc = `${this.operador( // DISPLAY RECEBE A OPERAÇÃO
                     parseFloat(this.ultimoNumero), // VALOR DO ULTIMO NUMERO CLICADO
                     parseFloat(this.valorAparente), // VALOR DO NUMERO ATUAL
                 )}`;
                 this.ultimoNumero = null; 
+                
 
-//*************************DEVERÁ SER CRIADO UM EVENTO QUE DELETA O VALOR DA TELA DO RESULTADO.*****************************
+//*************************DEVERÁ SER CRIADO UM EVENTO QUE DELETA O VALOR DA TELA DO RESULTADO "resultClic".*****************************
+//*************************DEVERÁ SER CRIADO UM EVENTO QUE QUANDO PASSADO UM VALOR "NUMERO" SEM OPERADOR RETORNE ELE MESMO "resultClic".*****************************
 
             },
+
+            /*=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<= */
 
             divisao(){
-              this.operador = (value1, value2) => value1 / value2;
-              this.setValue();
+              this.operador = (value1, value2) => value1 / value2; // UTILIZA A PROPS OPERADOR PARA CAPTURAR OS DOIS VALORES
+              this.setValue(); // SETA O RESULTADO DENTRO DA FUNÇÃO PASSANDO NO DISPLAY DE RESULTADO.
             },
 
-
+            multiplicar(){
+               this.operador = (value1, value2) => value1 * value2;
+               this.setValue();
+            },
+            subtrair(){
+              this.operador = (value1, value2) => value1 - value2;
+              this.setValue();
+            },
+            adicao(){
+              this.operador = (value1, value2) => value1 + value2;
+              this.setValue();
+}
         }
     }
 
