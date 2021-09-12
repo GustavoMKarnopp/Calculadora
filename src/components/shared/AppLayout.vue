@@ -193,16 +193,18 @@
               this.setValue();             
             },
 
-            valorQuadrado(){
-              this.resultadoCalc = `${parseFloat(this.valorAparente) * this.valorAparente}`;
+            setvalueQuadr(){
+              
+            },
 
-              if(this.clickOperador){
-                this.resultadoCalc = ''; 
-                this.clickOperador = false; 
-              }else{
-                 this.resultadoCalc = this.resultadoCalc * this.resultadoCalc;
-              }
-            } 
+            valorQuadrado(){
+                this.resultadoCalc = this.valorAparente * this.valorAparente;
+                console.log('Foi clicado 1 vez!')
+           /* 
+           for(var newEvent = 0; newEvent <= event; newEvent ++){
+              console.log('Foi clicado 2 vez!')
+            }   */            
+          } 
         }
     }
 /*------------------------=>=>=>=>=>=>=>=>=>=> CRIANDO FUNCIONALIDADES MS || MC || MR || M- || M+  <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
