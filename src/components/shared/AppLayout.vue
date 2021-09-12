@@ -76,9 +76,6 @@
     export default {
         data(){
           return{
-
-
-
             resultadoCalc: '',
             valorAparente : '', 
             ultimoNumero: null,
@@ -124,7 +121,7 @@
                   this.valorAparente = ''; 
                   this.clickOperador = false; 
                 }
-                this.valorAparente =`${this.valorAparente}${valor}`;            
+                this.valorAparente =`${this.valorAparente}${valor}`;                       
             },
 
             virgula(){
@@ -196,14 +193,10 @@
             },
 
             valorQuadrado(){
-                this.resultadoCalc = this.valorAparente * this.valorAparente;
-                console.log('Foi clicado 1 vez!')
-
-           /* 
-           for(var newEvent = 0; newEvent <= event; newEvent ++){
-              console.log('Foi clicado 2 vez!')
-            }   */            
+              this.valorAparente = this.valorAparente * this.valorAparente;  
+               
           },
+          
           raiz(){
               this.resultadoCalc = Math.sqrt(this.valorAparente);
           }
