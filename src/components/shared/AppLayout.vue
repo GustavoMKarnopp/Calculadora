@@ -26,7 +26,7 @@
 
                 <div class="BotoesF2" cols="3">
                     <button @click="porcento" class="btsF2"> % </button>
-                    <button class="btsF2"> / </button>
+                    <button @click="raiz" class="btsF2"> / </button>
                     <button @click="valorQuadrado" class="btsF2"> X² </button>
                     <button class="btsF2"> ¹/x </button>
                 </div>
@@ -76,6 +76,8 @@
     export default {
         data(){
           return{
+
+
 
             resultadoCalc: '',
             valorAparente : '', 
@@ -193,18 +195,18 @@
               this.setValue();             
             },
 
-            setvalueQuadr(){
-              
-            },
-
             valorQuadrado(){
                 this.resultadoCalc = this.valorAparente * this.valorAparente;
                 console.log('Foi clicado 1 vez!')
+
            /* 
            for(var newEvent = 0; newEvent <= event; newEvent ++){
               console.log('Foi clicado 2 vez!')
             }   */            
-          } 
+          },
+          raiz(){
+              this.resultadoCalc = Math.sqrt(this.valorAparente);
+          }
         }
     }
 /*------------------------=>=>=>=>=>=>=>=>=>=> CRIANDO FUNCIONALIDADES MS || MC || MR || M- || M+  <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
