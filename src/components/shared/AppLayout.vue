@@ -27,7 +27,7 @@
                 <div class="BotoesF2" cols="3">
                     <button @click="porcento" class="btsF2"> % </button>
                     <button class="btsF2"> / </button>
-                    <button  class="btsF2"> X² </button>
+                    <button @click="valorQuadrado" class="btsF2"> X² </button>
                     <button class="btsF2"> ¹/x </button>
                 </div>
 
@@ -72,120 +72,144 @@
     </main>
 </template>
 <script>
+
     export default {
         data(){
           return{
-            resultadoCalc: '', //MOSTRA O RESULTADO DOS CALCULOS
 
-            valorAparente : '', //RETORNA O VALOR "123" OU "ZERO = ( '0' )" QUANDO NÃO TIVER VALOR DENTRO!
+            resultadoCalc: '',
+            valorAparente : '', 
+            ultimoNumero: null,
+            operador: null,
+            clickOperador: false 
 
-            ultimoNumero: null, // NÚMERO QUE FOI CLICADO ANTERIORMENTE
-
-            operador: null, // FUNCIONALIDADE DO OPERADOR
-
-            clickOperador: false // OPERADOR SELECIONADO
           };
         },
+
         methods:{
+
+/*------------------------=>=>=>=>=>=>=>=>=>=> DELETA OS VALORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
+
             deletarTudo(){
-              this.valorAparente = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR APARENTE
-              
-            //=>=>=>=>=>=> Lógica Kar
-              this.resultadoCalc = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR RESULTADO
-              //console.log("O valor foi chamado!") //CONSOLE.LOG CHAMANDO O VALOR APARENTE!
+              this.valorAparente = '';          
+              this.resultadoCalc = '';       
             },
 
-            //=>=>=>=>=>=> Lógica Kar
             DeleteUm(){
-              this.valorAparente = this.valorAparente.substr( 0, this.valorAparente.length -1); //PEGA O VALORES DIGITADOS NO DISPLAY E DELETA UM POR UM. 
-              this.valorAparente; //RETORNA O VALOR ATUAL
-
+              this.valorAparente = this.valorAparente.substr( 0, this.valorAparente.length -1);
+              this.valorAparente;
             },
+
+/*------------------------=>=>=>=>=>=>=>=>=>=> OPERADOR +/- || % || NUMERO CLICADO || , <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
+
             maisMenos(){
-              this.valorAparente = this.valorAparente.charAt(0) === '-' // VERIFICA SE A VARIÁVEL É VAZIA, SE NÃO MANTEM O VALOR SE SIM ADICIONA O "-"
-              ? this.valorAparente.slice(1) : `-${this.valorAparente}`; // APÓS ADICIONADO O '-' ADIONA-SE O NUMERO OU MAIS E RETORNA NO DISPLAY
+              this.valorAparente = this.valorAparente.charAt(0) === '-' 
+              ? this.valorAparente.slice(1) : `-${this.valorAparente}`; 
             },
-            porcento(){
-            //=>=>=>=>=>=> Lógica Kar
-              if(this.valorAparente === ''){ //VERIFICA SE O VALOR CAPTURADO NÃO É 'ZERO ' / '0'
 
+            porcento(){          
+              if(this.valorAparente === ''){ 
                 this.valorAparente = 0;
-                //console.log('Valor zero'); // VERIFICAÇÃO DE RETORNO
-
+                //console.log('Valor zero'); 
               } else {
-
-                this.valorAparente = `${parseFloat(this.valorAparente) / 100}`;//PEGA O VALOR CAPTURADO NO DISPLAY E DIVIDE POR 100 '%'
+                this.valorAparente = `${parseFloat(this.valorAparente) / 100}`;
               }
              // console.log('PORCENTAGEM FUNCIONANDO!')
             },
 
             numero(valor){
-                if(this.clickOperador){ // SE O CLICK OPERADOR FOR CLICADO 
-                  this.valorAparente = ''; // ELE IRÁ PASSARÁ O valorAparente VAZIO OU SEJA "0"
-                  this.clickOperador = false; // E BUSCARÁ O clickOperador  E PASSARÁ O VALOR "0"
+                if(this.clickOperador){
+                  this.valorAparente = ''; 
+                  this.clickOperador = false; 
                 }
-
-                this.valorAparente =`${this.valorAparente}${valor}`; // PEGA O valor E CONCATENA COM O valorAparente FAZENDO O valorAparente RECEBER O VALOR COMCATENADO.
+                this.valorAparente =`${this.valorAparente}${valor}`;            
             },
-
-            //------------------------------CORRIGINDO BUG VÍRGULA----------------------------------------------------------
 
             virgula(){
-                if(this.valorAparente.indexOf(',') === -1 ){
-                  this.numero(',');
-                  
-           /* FAZER A LÓGICA PARA QUE SO ZERO PUCHE AUTOMÁTICO QUANDO UTILIZADO A PORCENTAGEM SER UM NUMERO ANTES DA VIRGULA */
-
-                }
-            
+                if(this.valorAparente.indexOf(',') === -1 ){ 
+                  this.numero(','); 
+                }           
             },
 
-/* A FUNÇÃO setValue() SERÁ CHAMADA DENTRO DAS FUNÇÕE  DE OPERAÇÕES */
+/*------------------------=>=>=>=>=>=>=>=>=>=> UTILIZADO NOS OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
+
             setValue(){
-
-                this.ultimoNumero = this.valorAparente; //A VARIAVEL ultimoNumero IRÁ RECEBER O VALOR DIGITADO ATUAL;
-                this.clickOperador = true; // O CLICK NO OPERADOR QUE ÉRA FALSO AGORA É VERDADEIRO.
-
+                this.ultimoNumero = this.valorAparente;
+                this.clickOperador = true; 
             },
- 
- /* FUNÇÃO QUE APLICA O RESULTADO EM TELA  """ = """ */
 
+/*------------------------=>=>=>=>=>=>=>=>=>=> RETORNA O RESULTADO <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
-            Calc(){
-                  this.resultadoCalc = `${this.operador( // DISPLAY RECEBE A OPERAÇÃO
-                    parseFloat(this.ultimoNumero), // VALOR DO ULTIMO NUMERO CLICADO
-                    parseFloat(this.valorAparente), // VALOR DO NUMERO ATUAL
+            Calc(){             
+                  this.resultadoCalc = `${this.operador( 
+                    parseFloat(this.ultimoNumero),
+                    parseFloat(this.valorAparente), 
                 )}`;
-                this.ultimoNumero = null; 
-                
-
-//*************************DEVERÁ SER CRIADO UM EVENTO QUE QUANDO PASSADO UM VALOR "NUMERO" SEM OPERADOR RETORNE ELE MESMO "resultClic".*****************************
-//*************************DEVERÁ SER CRIADO UM EVENTO QUE QUANDO EXECUTE A EQUAÇÃO EM TELA.*****************************
-
             },
 
-            /*=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<= */
+/*------------------------=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             divisao(){
-              this.operador = (value1, value2) => value1 / value2; // UTILIZA A PROPS OPERADOR PARA CAPTURAR OS DOIS VALORES
-              this.setValue(); // SETA O RESULTADO DENTRO DA FUNÇÃO PASSANDO NO DISPLAY DE RESULTADO.
+              if(this.valorAparente === ''){
+                this.valorAparente = ''
+                } else{
+                  this.valorAparente.indexOf('/');
+                  this.numero('/') 
+                }
+              this.operador = (value1, value2) => value1 / value2;
+              this.setValue(); 
             },
 
             multiplicar(){
+              if(this.valorAparente === ''){
+                this.valorAparente = ''
+                } else{
+                  this.valorAparente.indexOf('x');
+                  this.numero('x')
+                }
                this.operador = (value1, value2) => value1 * value2;
                this.setValue();
             },
+
             subtrair(){
+              if(this.valorAparente === ''){
+                this.valorAparente = ''
+                } else{
+                  this.valorAparente.indexOf('-');
+                  this.numero('-') 
+                }
               this.operador = (value1, value2) => value1 - value2;
               this.setValue();
             },
+
             adicao(){
+              if(this.valorAparente === ''){
+                this.valorAparente = ''
+                } else{
+                  this.valorAparente.indexOf('+');
+                  this.numero('+')
+                }
               this.operador = (value1, value2) => value1 + value2;
-              this.setValue();
-              this.numero('+')
-}
+              this.setValue();             
+            },
+
+            valorQuadrado(){
+              this.resultadoCalc = `${parseFloat(this.valorAparente) * this.valorAparente}`;
+
+              if(this.clickOperador){
+                this.resultadoCalc = ''; 
+                this.clickOperador = false; 
+              }else{
+                 this.resultadoCalc = this.resultadoCalc * this.resultadoCalc;
+              }
+            } 
         }
     }
+/*------------------------=>=>=>=>=>=>=>=>=>=> CRIANDO FUNCIONALIDADES MS || MC || MR || M- || M+  <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
+
+
+
+
 
 </script>
 <style>

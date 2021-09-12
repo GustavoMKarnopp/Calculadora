@@ -1,0 +1,140 @@
+<script>
+    export default {
+        data(){
+          return{
+            resultadoCalc: '', //MOSTRA O RESULTADO DOS CALCULOS
+
+            valorAparente : '', //RETORNA O VALOR "123" OU "ZERO = ( '0' )" QUANDO NÃO TIVER VALOR DENTRO!
+
+            ultimoNumero: null, // NÚMERO QUE FOI CLICADO ANTERIORMENTE
+
+            operador: null, // FUNCIONALIDADE DO OPERADOR
+
+            clickOperador: false // OPERADOR SELECIONADO
+          };
+        },
+        methods:{
+            deletarTudo(){
+              this.valorAparente = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR APARENTE
+              
+            //=>=>=>=>=>=> Lógica Kar
+              this.resultadoCalc = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR RESULTADO
+              //console.log("O valor foi chamado!") //CONSOLE.LOG CHAMANDO O VALOR APARENTE!
+            },
+
+            //=>=>=>=>=>=> Lógica Kar
+            DeleteUm(){
+              this.valorAparente = this.valorAparente.substr( 0, this.valorAparente.length -1); //PEGA O VALORES DIGITADOS NO DISPLAY E DELETA UM POR UM. 
+              this.valorAparente; //RETORNA O VALOR ATUAL
+
+            },
+            maisMenos(){
+              this.valorAparente = this.valorAparente.charAt(0) === '-' // VERIFICA SE A VARIÁVEL É VAZIA, SE NÃO MANTEM O VALOR SE SIM ADICIONA O "-"
+              ? this.valorAparente.slice(1) : `-${this.valorAparente}`; // APÓS ADICIONADO O '-' ADIONA-SE O NUMERO OU MAIS E RETORNA NO DISPLAY
+            },
+            porcento(){
+            //=>=>=>=>=>=> Lógica Kar
+              if(this.valorAparente === ''){ //VERIFICA SE O VALOR CAPTURADO NÃO É 'ZERO ' / '0'
+
+                this.valorAparente = 0;
+                //console.log('Valor zero'); // VERIFICAÇÃO DE RETORNO
+
+              } else {
+
+                this.valorAparente = `${parseFloat(this.valorAparente) / 100}`;//PEGA O VALOR CAPTURADO NO DISPLAY E DIVIDE POR 100 '%'
+              }
+             // console.log('PORCENTAGEM FUNCIONANDO!')
+            },
+
+            numero(valor){
+                if(this.clickOperador){ // SE O CLICK OPERADOR FOR CLICADO 
+                  this.valorAparente = ''; // ELE IRÁ PASSARÁ O valorAparente VAZIO 
+                  this.clickOperador = false; // E BUSCARÁ O clickOperador  E PASSARÁ O VALOR false
+                }
+
+                this.valorAparente =`${this.valorAparente}${valor}`; // PEGA O valor E CONCATENA COM O valorAparente FAZENDO O valorAparente RECEBER O VALOR COMCATENADO.
+                
+
+            },
+
+            //------------------------------CORRIGINDO BUG VÍRGULA----------------------------------------------------------
+
+            virgula(){
+                if(this.valorAparente.indexOf(',') === -1 ){ //PEGA A VÍRGULA A POSICIONA UMA CASA ANTES DO FINAL
+                  this.numero(','); //RETORNA A VÍRULA EM TELA 
+                }
+            
+            },
+
+/* A FUNÇÃO setValue() SERÁ CHAMADA DENTRO DAS FUNÇÕE  DE OPERAÇÕES */
+            setValue(){
+
+                this.ultimoNumero = this.valorAparente; //A VARIAVEL ultimoNumero IRÁ RECEBER O VALOR DIGITADO ATUAL;
+                this.clickOperador = true; // O CLICK NO OPERADOR QUE ÉRA FALSO AGORA É VERDADEIRO.
+
+            },
+ 
+ /* FUNÇÃO QUE APLICA O RESULTADO EM TELA  """ = """ */
+
+
+            Calc(){
+              
+                  this.resultadoCalc = `${this.operador( // DISPLAY RECEBE A OPERAÇÃO
+                    parseFloat(this.ultimoNumero), // VALOR DO ULTIMO NUMERO CLICADO
+                    parseFloat(this.valorAparente), // VALOR DO NUMERO ATUAL
+                )}`;
+           
+
+            },
+
+            /*=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<= */
+
+            divisao(){
+              if(this.valorAparente === ''){ //VERIFICA SE O É CLICADO VAZIO SE FOR NÃO RETORNARA NENHUM VALOR EM TELA.
+                this.valorAparente = ''
+                } else{
+                  this.valorAparente.indexOf('/'); //PEGA A VÍRGULA A POSICIONA UMA CASA ANTES DO FINAL
+                  this.numero('/') //RETORNA A VÍRULA EM TELA 
+                }
+              this.operador = (value1, value2) => value1 / value2; // UTILIZA A PROPS OPERADOR PARA CAPTURAR OS DOIS VALORES
+              this.setValue(); // SETA O RESULTADO DENTRO DA FUNÇÃO PASSANDO NO DISPLAY DE RESULTADO.
+            },
+
+            multiplicar(){
+              if(this.valorAparente === ''){ //VERIFICA SE O É CLICADO VAZIO SE FOR NÃO RETORNARA NENHUM VALOR EM TELA.
+                this.valorAparente = ''
+                } else{
+                  this.valorAparente.indexOf('x'); //PEGA A VÍRGULA A POSICIONA UMA CASA ANTES DO FINAL
+                  this.numero('x') //RETORNA A VÍRULA EM TELA 
+                }
+               this.operador = (value1, value2) => value1 * value2;
+               this.setValue();
+            },
+            subtrair(){
+              if(this.valorAparente === ''){ //VERIFICA SE O É CLICADO VAZIO SE FOR NÃO RETORNARA NENHUM VALOR EM TELA.
+                this.valorAparente = ''
+                } else{
+                  this.valorAparente.indexOf('-'); //PEGA A VÍRGULA A POSICIONA UMA CASA ANTES DO FINAL
+                  this.numero('-') //RETORNA A VÍRULA EM TELA 
+                }
+              this.operador = (value1, value2) => value1 - value2;
+              this.setValue();
+            },
+
+            adicao(){
+              
+              if(this.valorAparente === ''){ //VERIFICA SE O É CLICADO VAZIO SE FOR NÃO RETORNARA NENHUM VALOR EM TELA.
+                this.valorAparente = ''
+                } else{
+                  this.valorAparente.indexOf('+'); //PEGA A VÍRGULA A POSICIONA UMA CASA ANTES DO FINAL
+                  this.numero('+') //RETORNA A VÍRULA EM TELA 
+                }
+
+              this.operador = (value1, value2) => value1 + value2;
+              this.setValue();
+              
+}
+        }
+    }
+
+</script>
