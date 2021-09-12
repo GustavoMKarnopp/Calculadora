@@ -51,7 +51,7 @@
                         <button @click="numero('4')" class="btsC1"> 4 </button>
                         <button @click="numero('5')" class="btsC1"> 5 </button>
                         <button @click="numero('6')" class="btsC1"> 6 </button>
-                        <button @click="subtrair" class="btsC1"> - </button>
+                        <button @click="subtrair " class="btsC1"> - </button>
                     </div>
                     
                     <div class=" BotoesC4 " cols="3">
@@ -89,12 +89,16 @@
         methods:{
             deletarTudo(){
               this.valorAparente = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR APARENTE
+              
+            //=>=>=>=>=>=> Lógica Kar
               this.resultadoCalc = ''; // OBJETIVO DA FUNÇÃO É PASSAR O VALOR VAZIO PARA O DISPLAY NO VALOR RESULTADO
               //console.log("O valor foi chamado!") //CONSOLE.LOG CHAMANDO O VALOR APARENTE!
             },
+
+            //=>=>=>=>=>=> Lógica Kar
             DeleteUm(){
-              this.valorAparente = this.valorAparente.substr(1); //VERIFICAR A UTILIZAÇÃO DESTA PROPRIEDADE
-              this.valorAparente
+              this.valorAparente = this.valorAparente.substr( 0, this.valorAparente.length -1); //PEGA O VALORES DIGITADOS NO DISPLAY E DELETA UM POR UM. 
+              this.valorAparente; //RETORNA O VALOR ATUAL
 
             },
             maisMenos(){
@@ -102,6 +106,7 @@
               ? this.valorAparente.slice(1) : `-${this.valorAparente}`; // APÓS ADICIONADO O '-' ADIONA-SE O NUMERO OU MAIS E RETORNA NO DISPLAY
             },
             porcento(){
+            //=>=>=>=>=>=> Lógica Kar
               if(this.valorAparente === ''){ //VERIFICA SE O VALOR CAPTURADO NÃO É 'ZERO ' / '0'
 
                 this.valorAparente = 0;
@@ -154,8 +159,8 @@
                 this.ultimoNumero = null; 
                 
 
-//*************************DEVERÁ SER CRIADO UM EVENTO QUE DELETA O VALOR DA TELA DO RESULTADO "resultClic".*****************************
 //*************************DEVERÁ SER CRIADO UM EVENTO QUE QUANDO PASSADO UM VALOR "NUMERO" SEM OPERADOR RETORNE ELE MESMO "resultClic".*****************************
+//*************************DEVERÁ SER CRIADO UM EVENTO QUE QUANDO EXECUTE A EQUAÇÃO EM TELA.*****************************
 
             },
 
@@ -177,6 +182,7 @@
             adicao(){
               this.operador = (value1, value2) => value1 + value2;
               this.setValue();
+              this.numero('+')
 }
         }
     }
