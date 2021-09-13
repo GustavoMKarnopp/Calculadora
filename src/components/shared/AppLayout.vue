@@ -9,7 +9,7 @@
             <h3 class="result">{{resultadoCalc || '0'}}</h3><!--ARRUMAR O LAYOUT-->
           </div>
           <div class="Valores">
-              <h2>{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
+              <h2 v-show="!valQuadrado">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
           </div>    
         </div > 
       </v-container>
@@ -76,13 +76,14 @@
     export default {
         data(){
           return{
+
             resultadoCalc: '',
             valorAparente : '', 
 
             ultimoNumero: null,
             operador: null,
-            clickOperador: false 
-
+            clickOperador: false,
+            valQuadrado: false
           };
         },
 
@@ -105,11 +106,13 @@
 /*------------------------=>=>=>=>=>=>=>=>=>=> OPERADOR +/- || % || NUMERO CLICADO || , <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             maisMenos(){
+              this.valQuadrado = false
               this.valorAparente = this.valorAparente.charAt(0) === '-' 
               ? this.valorAparente.slice(1) : `-${this.valorAparente}`; 
             },
 
-            porcento(){          
+            porcento(){  
+              this.valQuadrado = false        
               if(this.valorAparente === ''){ 
                 this.valorAparente = 0;
                 //console.log('Valor zero'); 
@@ -133,12 +136,7 @@
               
                 if(this.valorAparente.indexOf(',') === -1 ){ 
                   this.numero(',');        
-                }
-// if(this.valorAparente.indexOf(',') === -1){ 
-              //  return parseFloat(this.valorAparente.replace(',')); 
-              
-             // }else{  }  
-              
+                }              
             },
 
 /*------------------------=>=>=>=>=>=>=>=>=>=> UTILIZADO NOS OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
@@ -166,6 +164,7 @@
 /*------------------------=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             divisao(){
+              this.valQuadrado = false
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -177,6 +176,7 @@
             },
 
             multiplicar(){
+              this.valQuadrado = false
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -188,6 +188,7 @@
             },
 
             subtrair(){
+              this.valQuadrado = false
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -199,6 +200,7 @@
             },
 
             adicao(){
+              this.valQuadrado = false
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -210,12 +212,15 @@
             },
 
             valorQuadrado(){
-              this.valorAparente = this.valorAparente * this.valorAparente;  
+                this.valQuadrado = true
+                this.valorAparente = this.valorAparente * this.valorAparente;
+                this.resultadoCalc = this.valorAparente;    
                
-          },
-          
+           },
            raiz(){
+             this.valQuadrado = true
               this.valorAparente = Math.sqrt(this.valorAparente);
+              this.resultadoCalc = this.valorAparente;
           },
         }
     }
