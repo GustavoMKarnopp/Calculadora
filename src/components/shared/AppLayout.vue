@@ -28,7 +28,7 @@
                     <button @click="porcento" class="btsF2"> % </button>
                     <button @click="raiz" class="btsF2"> / </button>
                     <button @click="valorQuadrado" class="btsF2"> X² </button>
-                    <button class="btsF2"> ¹/x </button>
+                    <button @click="xum" class="btsF2"> ¹/x </button>
                 </div>
 
                 <div class="BotoesInf">
@@ -157,8 +157,6 @@
                    this.resultadoCalc = `${this.operador( 
                     parseFloat(this.ultimoNumero),
                     parseFloat(this.valorAparente), 
-                    parseFloat(this.resultadoCalc.replace(',','.')) 
-
                 )}`;
                 }
             },
@@ -223,6 +221,14 @@
              this.valQuadrado = true;
               this.valorAparente = Math.sqrt(this.valorAparente);
               this.resultadoCalc = this.valorAparente;
+          },
+           xum(){
+             this.valQuadrado = true;
+             if(this.valorAparente === '' || this.valorAparente === '0'){
+               this.resultadoCalc = this.valorAparente = 'Não é possível dividir por zero!'
+             }
+             // this.valorAparente = Math.sqrt(this.valorAparente);
+              //this.resultadoCalc = this.valorAparente;
           },
         }
     }
@@ -388,6 +394,7 @@
         height: 54px;
         width: 85px;
     }
+   
     .Valores{
       float: right;
       width: 100%;
@@ -402,6 +409,7 @@
       
     }
     .result{
+      font-size: 25px;
       opacity: 0.5;
       float: right;
     }
