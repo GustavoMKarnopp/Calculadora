@@ -135,9 +135,10 @@
             },
 
             virgula(){
-              
-                if(this.valorAparente.indexOf(',') === -1 ){ 
-                  this.numero(',');        
+                if(this.valorAparente === ''){
+                    this.valorAparente = '0,'
+                  } else if(this.valorAparente.indexOf(',') === -1 ){ 
+                  this.numero(',');      
                 }              
             },
 
@@ -222,6 +223,7 @@
               this.valorAparente = Math.sqrt(this.valorAparente);
               this.resultadoCalc = this.valorAparente;
           },
+
            xum(){
              this.valQuadrado = true;
              if(this.valorAparente === '' || this.valorAparente === '0'){
@@ -233,6 +235,7 @@
           },
         }
     }
+
 /*------------------------=>=>=>=>=>=>=>=>=>=> CRIANDO FUNCIONALIDADES MS || MC || MR || M- || M+  <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
 
