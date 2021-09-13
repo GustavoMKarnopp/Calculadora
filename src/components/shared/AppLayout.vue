@@ -8,8 +8,8 @@
           <div class="Resultado">
             <h3 class="result">{{resultadoCalc || '0'}}</h3><!--ARRUMAR O LAYOUT-->
           </div>
-          <div class="Valores">
-              <h2 v-show="!valQuadrado">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
+          <div maxlength="10" class="Valores">
+              <h2  class="valorTela" v-show="!valQuadrado">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
           </div>    
         </div > 
       </v-container>
@@ -131,7 +131,6 @@
                 }
                
                 this.valorAparente =`${this.valorAparente}${valor}`;   
-
             },
 
             virgula(){
@@ -208,8 +207,8 @@
                   this.valorAparente.indexOf('+');
                   this.numero('+')
                 }
-              this.operador = (value1, value2) => value1 + value2;
-              this.setValue();             
+                this.operador = (value1, value2) => value1 + value2;
+                this.setValue();        
             },
 
             valorQuadrado(){
@@ -281,6 +280,11 @@
       padding-bottom: 0;
     }
   h2{
+    white-space: nowrap; 
+      text-align: right;
+      width: 15em; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
       font-size: 20px;
       float: right;
     }
@@ -291,9 +295,6 @@
      h2{
       float: right;
       
-    }
-    .result{
-      float: right;
     }
     .nome{
       background-color:  #e6dfdf ;
@@ -340,7 +341,12 @@
         padding-bottom: 0;
     }
       h2{
-      font-size: 20px;
+      white-space: nowrap; 
+      text-align: right;
+      width: 10em; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
+      font-size: 14px;
       float: right;
     }
     .result{
@@ -348,16 +354,18 @@
       float: right;
     }
     .Resultado{
-      font-size: 25px;
+      font-size: 20px;
       width: 100%;
       height: 50px; 
     }
      h2{
+      white-space: nowrap; 
+      text-align: right;
+      width: 15em; 
+      overflow: hidden;
+      text-overflow: ellipsis; 
       float: right;
       
-    }
-    .result{
-      float: right;
     }
     .nome{
       background-color:  #e6dfdf ;
@@ -410,7 +418,6 @@
     h2{
       font-size: 20px;
       float: right;
-      
     }
     .result{
       font-size: 25px;
