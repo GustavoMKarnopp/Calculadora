@@ -226,9 +226,10 @@
              this.valQuadrado = true;
              if(this.valorAparente === '' || this.valorAparente === '0'){
                this.resultadoCalc = this.valorAparente = 'Não é possível dividir por zero!'
+             }else{
+               this.valorAparente = 1/(this.valorAparente);
+               this.resultadoCalc = this.valorAparente;
              }
-             // this.valorAparente = Math.sqrt(this.valorAparente);
-              //this.resultadoCalc = this.valorAparente;
           },
         }
     }
