@@ -34,8 +34,8 @@
                 <div class="BotoesInf">
 
                     <div class=" BotoesC1 " cols="3">
-                        <button class="btsC1"> CE </button>
-                        <button @click="deletarTudo" class="btsC1"> C </button> <!--//RESPONSÁVEL POR  DELETAR O VALOR TOTAL-->
+                        <button @click="deletarTudo" class="btsC1"> CE </button>
+                        <button @click="deletar" class="btsC1"> C </button> <!--//RESPONSÁVEL POR  DELETAR O VALOR TOTAL-->
                         <button @click="DeleteUm" class="btsC1"> DEL </button>
                         <button @click="divisao" class="btsC1"> / </button>
                     </div>
@@ -78,6 +78,7 @@
           return{
             resultadoCalc: '',
             valorAparente : '', 
+
             ultimoNumero: null,
             operador: null,
             clickOperador: false 
@@ -86,12 +87,14 @@
         },
 
         methods:{
-
 /*------------------------=>=>=>=>=>=>=>=>=>=> DELETA OS VALORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
-            deletarTudo(){
+            deletar(){
               this.valorAparente = '';          
               this.resultadoCalc = '';       
+            },
+            deletarTudo(){            
+                this.valorAparente = '';               
             },
 
             DeleteUm(){
@@ -129,9 +132,12 @@
             virgula(){
               
                 if(this.valorAparente.indexOf(',') === -1 ){ 
-                  this.numero(','); 
-                }           
-
+                  this.numero(',');        
+                }
+// if(this.valorAparente.indexOf(',') === -1){ 
+              //  return parseFloat(this.valorAparente.replace(',')); 
+              
+             // }else{  }  
               
             },
 
@@ -151,6 +157,8 @@
                    this.resultadoCalc = `${this.operador( 
                     parseFloat(this.ultimoNumero),
                     parseFloat(this.valorAparente), 
+                    parseFloat(this.resultadoCalc.replace(',','.')) 
+
                 )}`;
                 }
             },
