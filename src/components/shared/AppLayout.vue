@@ -76,7 +76,6 @@
     export default {
         data(){
           return{
-
             resultadoCalc: '',
             valorAparente : '', 
 
@@ -91,14 +90,17 @@
 /*------------------------=>=>=>=>=>=>=>=>=>=> DELETA OS VALORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             deletar(){
+              this.valQuadrado = false;
               this.valorAparente = '';          
               this.resultadoCalc = '';       
             },
-            deletarTudo(){            
+            deletarTudo(){ 
+              this.valQuadrado = false;          
                 this.valorAparente = '';               
             },
 
             DeleteUm(){
+              this.valQuadrado = false;
               this.valorAparente = this.valorAparente.substr( 0, this.valorAparente.length -1);
               this.valorAparente;
             },
@@ -106,13 +108,13 @@
 /*------------------------=>=>=>=>=>=>=>=>=>=> OPERADOR +/- || % || NUMERO CLICADO || , <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             maisMenos(){
-              this.valQuadrado = false
+              this.valQuadrado = false;
               this.valorAparente = this.valorAparente.charAt(0) === '-' 
               ? this.valorAparente.slice(1) : `-${this.valorAparente}`; 
             },
 
             porcento(){  
-              this.valQuadrado = false        
+              this.valQuadrado = false;        
               if(this.valorAparente === ''){ 
                 this.valorAparente = 0;
                 //console.log('Valor zero'); 
@@ -164,7 +166,7 @@
 /*------------------------=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             divisao(){
-              this.valQuadrado = false
+              this.valQuadrado = false;
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -176,7 +178,7 @@
             },
 
             multiplicar(){
-              this.valQuadrado = false
+              this.valQuadrado = false;
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -188,7 +190,7 @@
             },
 
             subtrair(){
-              this.valQuadrado = false
+              this.valQuadrado = false;
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -200,7 +202,7 @@
             },
 
             adicao(){
-              this.valQuadrado = false
+              this.valQuadrado = false;
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -212,13 +214,13 @@
             },
 
             valorQuadrado(){
-                this.valQuadrado = true
+                this.valQuadrado = true;
                 this.valorAparente = this.valorAparente * this.valorAparente;
                 this.resultadoCalc = this.valorAparente;    
                
            },
            raiz(){
-             this.valQuadrado = true
+             this.valQuadrado = true;
               this.valorAparente = Math.sqrt(this.valorAparente);
               this.resultadoCalc = this.valorAparente;
           },
@@ -251,10 +253,14 @@
   width: 100%;
 }
   .btsF2{
-    margin:0px 10px 7px 20px;
+    margin: 0px 11px 7px 0px;
+    height: 53px;
+    width: 70px;
   }
   .btsC1{
-    margin:0px 10px 7px 20px;
+    height: 53px;
+    width: 70px;
+    margin:0px 0px 7px 10px;
   }
   .Valores{
       float: right;
@@ -265,10 +271,11 @@
       padding-bottom: 0;
     }
   h2{
-      font-size: 25px;
+      font-size: 20px;
       float: right;
     }
     .result{
+      opacity: 0.5;
       float: right;
     }
      h2{
@@ -285,9 +292,9 @@
 
     @media (min-width: 768px){
       button {
-        margin: 10px;
-        width:auto;
-        height: 37px;
+        margin: 8px;
+        width: auto;
+        height: 30px;
       }
       .header{
        position: fixed;
@@ -304,12 +311,16 @@
         height: 200px;
         width: 100%;
       }
-      .btsC1{
-        margin: 0px 30px 13px 14px;
+     .btsF2{
+        margin: 5px 0px 5px 10px;
+        height: 35px;
+        width: 40px;
       }
-      .btsF2{
-       margin:0px 20px 2px 30px;
-      }
+    .btsC1{
+        margin: 5px 4px 6px 7px;
+        height: 40px;
+        width: 43px;
+    }
       .Valores{
         float: right;
         width: 100%;
@@ -319,10 +330,11 @@
         padding-bottom: 0;
     }
       h2{
-        font-size: 25px;
-        float: right;
+      font-size: 20px;
+      float: right;
     }
     .result{
+      opacity: 0.5;
       float: right;
     }
     .Resultado{
@@ -364,13 +376,17 @@
       width: 100%;
     }
     .bts{
-         margin:0px 15px 2px 25px;
+        margin:0px 15px 2px 25px;
       }
-      .btsF2{
-        margin:12px 40px 2px 35px ;
+    .btsF2{
+        margin: 0px 0px 0px 20px;
+        height: 40px;
+        width: 75px;
       }
     .btsC1{
-      margin: 20px 40px 2px 35px ;
+        margin: 5px 0px 0px 10px;
+        height: 54px;
+        width: 85px;
     }
     .Valores{
       float: right;
@@ -381,10 +397,12 @@
       padding-bottom: 0;
     }
     h2{
+      font-size: 20px;
       float: right;
       
     }
     .result{
+      opacity: 0.5;
       float: right;
     }
     .nome{
