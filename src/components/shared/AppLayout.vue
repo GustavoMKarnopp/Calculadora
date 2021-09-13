@@ -121,13 +121,18 @@
                   this.valorAparente = ''; 
                   this.clickOperador = false; 
                 }
-                this.valorAparente =`${this.valorAparente}${valor}`;                       
+               
+                this.valorAparente =`${this.valorAparente}${valor}`;   
+
             },
 
             virgula(){
+              
                 if(this.valorAparente.indexOf(',') === -1 ){ 
                   this.numero(','); 
                 }           
+
+              
             },
 
 /*------------------------=>=>=>=>=>=>=>=>=>=> UTILIZADO NOS OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
@@ -139,11 +144,15 @@
 
 /*------------------------=>=>=>=>=>=>=>=>=>=> RETORNA O RESULTADO <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
-            Calc(){             
-                  this.resultadoCalc = `${this.operador( 
+            Calc(){         
+             if(this.valorAparente === ''){ 
+                 this.valorAparente = 0
+                }else{
+                   this.resultadoCalc = `${this.operador( 
                     parseFloat(this.ultimoNumero),
                     parseFloat(this.valorAparente), 
                 )}`;
+                }
             },
 
 /*------------------------=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
@@ -197,9 +206,9 @@
                
           },
           
-          raiz(){
-              this.resultadoCalc = Math.sqrt(this.valorAparente);
-          }
+           raiz(){
+              this.valorAparente = Math.sqrt(this.valorAparente);
+          },
         }
     }
 /*------------------------=>=>=>=>=>=>=>=>=>=> CRIANDO FUNCIONALIDADES MS || MC || MR || M- || M+  <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
