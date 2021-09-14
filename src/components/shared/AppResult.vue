@@ -112,8 +112,9 @@ export default {
 
   @media (min-width: 1024px){  
     .v-btn{
-      max-height: 10px !important;
+      max-height: 30px !important;
       color: brown !important;
+      margin: 0px
     }
     .posicaoBTN{
       margin: 0;
