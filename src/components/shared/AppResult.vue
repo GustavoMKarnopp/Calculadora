@@ -1,21 +1,17 @@
 <template>
+<main class="body">
     <v-sheet
       class=" overflow-hidden" 
-      
     >
 
     <AppLayout class="Layout"/>
 
       <v-container >
         <v-row
-        
         class="posicaoBTN"
         >
           <v-btn
             
-            class="estilBTN"
-            color="dark"
-            dark
             @click.stop="drawer = !drawer"
           >
             Hist
@@ -50,7 +46,7 @@
         </v-list>
       </v-navigation-drawer>
     </v-sheet>
-  
+  </main>
 </template>
 <script>
   import AppLayout from './AppLayout.vue'
@@ -59,6 +55,7 @@ export default {
     AppLayout,
   },
     data () {
+     
     return {
       drawer: null,
       items: [
@@ -72,33 +69,59 @@ export default {
 </script>
 <style>
 
+/*=========================================>> CONFIG. MOBILE <<=========================================== */
+
  @media (min-width: 320px){
+   .posicaoBTN{
+    max-width: 20%;
+    max-height:100px;
+    margin-right: 40px;
+    position: relative;
+}
+     .estilBTN{
+    max-width: 20%;
+    max-height:100px;
+    margin-right: 40px;
+    position: relative;
+  }
+ }
+
+/*=========================================>> CONFIG. TABLET <<=========================================== */
+
+
+ @media (min-width: 768px){
+   .estilBTN{
+  height:60px;
+  max-width: 15%;
+  margin-left: 32%;
+  margin-right: 40px;
+  position: relative;
+}
   .posicaoBTN{
+  height:60px;
   max-width: 20%;
-  max-height:100px;
-  
+  max-height: 20%;
+  margin-left: 32%;
   margin-right: 40px;
   position: relative;
 }
  }
 
- @media (min-width: 768px){
-   .posicaoBTN{
-  height:60px;
-  max-width: 20%;
-  margin-left: 32%;
-  margin-right: 40px;
-  position: relative;
-}
- }
-  @media (min-width: 1024px){
-  .posicaoBTN{
-  height:60px;
-  max-width: 20%;
-  margin-left: 32%;
-  margin-right: 40px;
-  position: relative;
-}
+/*=========================================>> CONFIG. DESKTOP <<=========================================== */
+
+
+  @media (min-width: 1024px){  
+    .v-btn{
+      max-height: 10px !important;
+      color: brown !important;
+    }
+    .posicaoBTN{
+      margin: 0;
+      margin-left: 33.1%;
+      margin-right: 65%;
+      position: relative;
+    }
+ 
 }
 
 </style>
