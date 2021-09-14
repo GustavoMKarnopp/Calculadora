@@ -1,12 +1,12 @@
 <template>
-<div id="app">
-  <v-app id="inspire">
+
+  
     <v-sheet
-      height="400"
+      height="100%"
       class="overflow-hidden"
       style="position: relative;"
     >
-      <v-container class="fill-height">
+      <v-container class=" fundo fill-height">
         <v-row
           align="center"
           justify="center"
@@ -25,10 +25,11 @@
         v-model="drawer"
         absolute
         temporary
+        height="100%"
       >
-        <v-list-item>
+        <v-list-item >
   
-          <v-list-item-content>
+          <v-list-item-content  >
             <v-list-item-title>Memory | History</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -48,8 +49,8 @@
         </v-list>
       </v-navigation-drawer>
     </v-sheet>
-  </v-app>
-</div>
+  
+
 </template>
 <script>
 export default {
@@ -66,4 +67,5 @@ export default {
 
 </script>
 <style>
+
 </style>
