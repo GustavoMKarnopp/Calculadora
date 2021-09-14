@@ -1,12 +1,11 @@
 <template>
       <v-col class="text-center" cols="12">
        <AppResult/>
-       <AppLayout class="Layout"/>
+       <!-- <AppLayout class="Layout"/> -->
       </v-col>
 </template>
-
 <script>
-import AppLayout from './shared/AppLayout.vue'
+//import AppLayout from './shared/AppLayout.vue'
 import AppResult from './shared/AppResult.vue'
   export default {
     name: 'AppCalculadora',
@@ -15,7 +14,7 @@ import AppResult from './shared/AppResult.vue'
      
     }),
     components:{
-      AppLayout,
+      //AppLayout,
       AppResult
     }
   }

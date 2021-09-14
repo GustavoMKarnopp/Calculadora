@@ -1,22 +1,24 @@
 <template>
-
-  
     <v-sheet
-      height="100%"
-      class="overflow-hidden"
-      style="position: relative;"
+      class=" overflow-hidden" 
+      
     >
-      <v-container class=" fundo fill-height">
+
+    <AppLayout class="Layout"/>
+
+      <v-container >
         <v-row
-          align="center"
-          justify="center"
+        
+        class="posicaoBTN"
         >
           <v-btn
-            color="black"
+            
+            class="estilBTN"
+            color="dark"
             dark
             @click.stop="drawer = !drawer"
           >
-            Memory | History
+            Hist
           </v-btn>
         </v-row>
       </v-container>
@@ -25,16 +27,14 @@
         v-model="drawer"
         absolute
         temporary
-        height="100%"
       >
-        <v-list-item >
-  
-          <v-list-item-content  >
-            <v-list-item-title>Memory | History</v-list-item-title>
+        <v-list-item>  
+          <v-list-item-content>
+            <v-list-item-title>History | Memeory</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
   
-        <v-divider></v-divider> <!--SERVE PARA DIVIDIR A TELA-->
+        <v-divider></v-divider>
   
         <v-list dense>
           <v-list-item
@@ -42,7 +42,8 @@
             :key="item.title"
             link
           >
-               <v-list-item-content>
+  
+            <v-list-item-content>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -50,10 +51,13 @@
       </v-navigation-drawer>
     </v-sheet>
   
-
 </template>
 <script>
+  import AppLayout from './AppLayout.vue'
 export default {
+  components:{
+    AppLayout,
+  },
     data () {
     return {
       drawer: null,
@@ -67,5 +71,34 @@ export default {
 
 </script>
 <style>
+
+ @media (min-width: 320px){
+  .posicaoBTN{
+  max-width: 20%;
+  max-height:100px;
+  
+  margin-right: 40px;
+  position: relative;
+}
+ }
+
+ @media (min-width: 768px){
+   .posicaoBTN{
+  height:60px;
+  max-width: 20%;
+  margin-left: 32%;
+  margin-right: 40px;
+  position: relative;
+}
+ }
+  @media (min-width: 1024px){
+  .posicaoBTN{
+  height:60px;
+  max-width: 20%;
+  margin-left: 32%;
+  margin-right: 40px;
+  position: relative;
+}
+}
 
 </style>
