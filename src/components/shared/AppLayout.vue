@@ -9,7 +9,7 @@
             <h3 class="result">{{resultadoCalc || '0'}}</h3><!--ARRUMAR O LAYOUT-->
           </div>
           <div class="Resultado">
-            <DisplayHistorico/>
+            <DisplayHistorico />
           </div>
           <div maxlength="10" class="Valores">
               <h2  class="valorTela" v-show="!valQuadrado">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
@@ -18,14 +18,14 @@
       </v-container>
             <v-app cols="12" >
 
-                <div class="BotoesF1" cols="2">
+                <!-- <div class="BotoesF1" cols="2">
                     <button class="bts"> MC </button>
                     <button class="bts"> MR </button>
                     <button class="bts"> M+ </button>
                     <button class="bts"> M- </button>
                     <button class="bts"> MS </button>
                     <button class="bts"> M </button>                  
-                </div>
+                </div> -->
 
                 <div class="BotoesF2" cols="3">
                     <button @click="porcento" class="btsF2"> % </button>
@@ -350,10 +350,15 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
         float: right;
         width: 100%;
         height: 50px; 
-        margin-top: 80px;
+        margin-top: 25px;
         bottom:0;
         padding-bottom: 0;
     }
+        .Resultado{
+          font-size: 20px;
+          width: 100%;
+          height: 50px; 
+        }
       h2{
       white-space: nowrap; 
       text-align: right;
@@ -366,11 +371,6 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
     .result{
       opacity: 0.5;
       float: right;
-    }
-    .Resultado{
-      font-size: 20px;
-      width: 100%;
-      height: 50px; 
     }
      h2{
       white-space: nowrap; 
