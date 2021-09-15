@@ -8,6 +8,9 @@
           <div class="Resultado">
             <h3 class="result">{{resultadoCalc || '0'}}</h3><!--ARRUMAR O LAYOUT-->
           </div>
+          <div class="Resultado">
+            <DisplayHistorico/>
+          </div>
           <div maxlength="10" class="Valores">
               <h2  class="valorTela" v-show="!valQuadrado">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
           </div>    
@@ -72,10 +75,16 @@
     </main>
 </template>
 <script>
+import DisplayHistorico from './Display/DisplayHistorico.vue'
 
     export default {
+    
+      components:{
+            DisplayHistorico,
+          },
         data(){
           return{
+            
             resultadoCalc: '',
             valorAparente : '', 
 
@@ -275,9 +284,14 @@
       float: right;
       width: 100%;
       height: 50px; 
-      margin-top: 80px;
+      margin-top: 0px;
       bottom:0;
       padding-bottom: 0;
+    }
+     .Resultado{
+      font-size: 20px;
+      width: 100%;
+      height: 50px; 
     }
   h2{
     white-space: nowrap; 
@@ -411,7 +425,7 @@
       float: right;
       width: 100%;
       height: 50px; 
-      margin-top: 60px;
+      margin-top: 15px;
       bottom:0;
       padding-bottom: 0;
     }
