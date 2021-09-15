@@ -6,7 +6,7 @@
 
     <AppLayout class="Layout"/>
 
-      <v-container >
+      <v-container class="container">
         <v-row
         class="posicaoBTN"
         >
@@ -70,16 +70,8 @@ export default {
 /*=========================================>> CONFIG. MOBILE <<=========================================== */
 
  @media (min-width: 320px){
-   .posicaoBTN{
-    max-width: 20%;
-    max-height: 100px;
-    margin-right: 40px;
-    float: right;
-    margin: 0;
-    position: relative;
-  }
-    .v-btn{
-    max-height: 32px !important;
+   .v-btn{
+     max-height: 32px !important;
     color: #e6dfdf !important;
     margin: -2px -6px 0px 0px;
   }
@@ -91,47 +83,57 @@ export default {
     background-color:  #cfcdcd !important;
     color: darkblue !important;
   }
+    .posicaoBTN{
+     max-width: 20%;
+     max-height: 100px;
+     margin-right: 40px;
+     float: right;
+     margin: 0;
+     position: relative;
+   }
  }
+
 
 /*=========================================>> CONFIG. TABLET <<=========================================== */
 
 
  @media (min-width: 768px){
-    .v-btn{
-    max-height: 30px !important;
-    color:   #e6dfdf  !important;
-    margin: 0px
+   .v-btn{
+      max-height: 32px !important;
+      color: #e6dfdf !important;
+      min-width: 35px !important;
+      padding: 0px !important;
   }
   .v-btn span{
-   font-size: 13px;
+    font-size: 11px;
     color: rgb(14, 11, 11) !important;
   }
   .theme--light.v-btn.v-btn--has-bg {
-      background-color:  #cfcdcdb9 !important;
-      color: darkblue !important;
+    background-color:  #cfcdcd !important;
+    color: darkblue !important;
   }
     .posicaoBTN{
-    height:60px;
     max-width: 20%;
-    max-height: 20%;
-    margin-left: 32%;
-    margin-right: 40px;
+    max-height: 100px;
+    margin-right: 235px;
+    float: right;    
     position: relative;
-  }
+   }
 }
-
 /*=========================================>> CONFIG. DESKTOP <<=========================================== */
 
 
-@media (min-width: 1024px){  
-  .v-btn{
-    max-height: 30px !important;
+@media (min-width: 1024px){ 
+  
+    .v-btn{
+    max-height: 40px !important;
     color:#e6dfdf  !important;
-    margin: 0px
+    margin: -2px -6px 0px 0px;
+    min-width: 65px !important;
   }
   .v-btn span{
-   font-size: 13px;
-    color: rgb(14, 11, 11) !important;
+  font-size: 13px !important;
+  color: rgb(14, 11, 11) !important;
   }
 .theme--light.v-btn.v-btn--has-bg {
     background-color:  #cfcdcdb9 !important;
@@ -140,11 +142,11 @@ export default {
   
 .posicaoBTN{
   margin: 0;
-  margin-left: 33.1%;
-      margin-right: 61%;
-  position: relative;
+  margin-right: 62%;
+  position: relative; 
+      
 }
- 
 }
+
 
 </style>
