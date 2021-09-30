@@ -17,15 +17,14 @@
         </div > 
       </v-container>
             <v-app cols="12" >
-
-                <!-- <div class="BotoesF1" cols="2">
+                <div class="BotoesF1" cols="2">
                     <button class="bts"> MC </button>
                     <button class="bts"> MR </button>
                     <button class="bts"> M+ </button>
                     <button class="bts"> M- </button>
                     <button class="bts"> MS </button>
                     <button class="bts"> M </button>                  
-                </div> -->
+                </div>
 
                 <div class="BotoesF2" cols="3">
                     <button @click="porcento" class="btsF2"> % </button>

@@ -11,9 +11,5 @@ export default {
             historicoValue: ''
     }
         }, 
-        components() {
-            this.historicoValue = this.$root.va
-        }
-        
 }
 </script>
