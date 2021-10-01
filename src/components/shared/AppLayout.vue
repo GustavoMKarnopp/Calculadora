@@ -12,7 +12,8 @@
             <DisplayHistorico />
           </div>
           <div maxlength="10" class="Valores">
-              <h2  class="valorTela" v-show="!valQuadrado">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
+              <!--O !escondeValor, tem a obrigação de esconder o valor quado for feito o calculo de uma raiz ou valor ao quadrado. -->
+              <h2  class="valorTela" v-show="!escondeValor">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
           </div>    
         </div > 
       </v-container>
@@ -90,7 +91,7 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
             ultimoNumero: null,
             operador: null,
             clickOperador: false,
-            valQuadrado: false
+            escondeValor: false
           };
         },
 
@@ -98,17 +99,17 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
 /*------------------------=>=>=>=>=>=>=>=>=>=> DELETA OS VALORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             deletar(){
-              this.valQuadrado = false;
+              this.escondeValor = false;
               this.valorAparente = '';          
               this.resultadoCalc = '';       
             },
             deletarTudo(){ 
-              this.valQuadrado = false;          
+              this.escondeValor = false;          
                 this.valorAparente = '';               
             },
 
             DeleteUm(){
-              this.valQuadrado = false;
+              this.escondeValor = false;
               this.valorAparente = this.valorAparente.substr( 0, this.valorAparente.length -1);
               this.valorAparente;
             },
@@ -116,13 +117,13 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
 /*------------------------=>=>=>=>=>=>=>=>=>=> OPERADOR +/- || % || NUMERO CLICADO || , <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             maisMenos(){
-              this.valQuadrado = false;
+              this.escondeValor = false;
               this.valorAparente = this.valorAparente.charAt(0) === '-' 
               ? this.valorAparente.slice(1) : `-${this.valorAparente}`; 
             },
 
             porcento(){  
-              this.valQuadrado = false;        
+              this.escondeValor = false;        
               if(this.valorAparente === ''){ 
                 this.valorAparente = 0;
                 //console.log('Valor zero'); 
@@ -172,7 +173,7 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
 /*------------------------=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
             divisao(){
-              this.valQuadrado = false;
+              this.escondeValor = false;
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -184,7 +185,7 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
             },
 
             multiplicar(){
-              this.valQuadrado = false;
+              this.escondeValor = false;
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -196,7 +197,7 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
             },
 
             subtrair(){
-              this.valQuadrado = false;
+              this.escondeValor = false;
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -208,7 +209,7 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
             },
 
             adicao(){
-              this.valQuadrado = false;
+              this.escondeValor = false;
               if(this.valorAparente === ''){
                 this.valorAparente = ''
                 } else{
@@ -217,22 +218,23 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
                 }
                 this.operador = (value1, value2) => value1 + value2;
                 this.setValue();        
+            console.log()
             },
 
             valorQuadrado(){
-                this.valQuadrado = true;
+                this.escondeValor = true;
                 this.valorAparente = this.valorAparente * this.valorAparente;
                 this.resultadoCalc = this.valorAparente;    
                
            },
            raiz(){
-             this.valQuadrado = true;
+             this.escondeValor = true;
               this.valorAparente = Math.sqrt(this.valorAparente);
               this.resultadoCalc = this.valorAparente;
           },
 
            xum(){
-             this.valQuadrado = true;
+             this.escondeValor = true;
              if(this.valorAparente === '' || this.valorAparente === '0'){
                this.resultadoCalc = this.valorAparente = 'Não é possível dividir por zero!'
              }else{

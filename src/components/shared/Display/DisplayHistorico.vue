@@ -1,6 +1,6 @@
 <template>
     <div class="Resultado">
-            <h3 class="result">{{historicoValue.valorAparente || '0'}}</h3>
+            <h3 class="result">{{this.historicoValue}}</h3>
           </div>
 </template>
 <script>
@@ -8,7 +8,7 @@ export default {
 
     data(){
         return{
-            historicoValue: ''
+            historicoValue: '0'
     }
         }, 
 }
