@@ -9,6 +9,7 @@
             <h3 class="result">{{resultadoCalc || '0'}}</h3><!--ARRUMAR O LAYOUT-->
           </div>
           <div class="Resultado">
+
             <DisplayHistorico />
           </div>
           <div maxlength="10" class="Valores">
@@ -75,7 +76,10 @@
     </main>
 </template>
 <script>
+import Vue from 'vue';
 import DisplayHistorico from './Display/DisplayHistorico.vue'
+
+export const eventBus = new Vue();
 
     export default {
     
