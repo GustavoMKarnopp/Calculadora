@@ -12,7 +12,7 @@
             <DisplayHistorico />
           </div>
           <div maxlength="10" class="Valores">
-              <!--O !escondeValor, tem a obrigação de esconder o valor quado for feito o calculo de uma raiz ou valor ao quadrado. -->
+
               <h2  class="valorTela" v-show="!escondeValor">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
           </div>    
         </div > 
