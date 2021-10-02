@@ -25,26 +25,15 @@
       >
         <v-list-item>  
           <v-list-item-content>
-            <v-list-item-title>History | Memeory</v-list-item-title>
+            <v-list-item-title>History | Memory</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
   
         <v-divider></v-divider>
   
         <v-list dense>
-          <v-list-item
-            v-for="item in items"
-            :key="item.title"
-            link
-          >
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-            <h1>Dados</h1>
-            <h1>Dados</h1>
-            <h1>Dados</h1>
-            <h1>Dados</h1>
-          </v-list-item-content>
-          </v-list-item>
+        <history></history>
+        <memory></memory>
         </v-list>
       </v-navigation-drawer>
     </v-sheet>
@@ -52,17 +41,20 @@
 </template>
 <script>
   import AppLayout from './AppLayout.vue'
+  import Memory from './history_Memory/Memory.vue'
+  import History from './history_Memory/history.vue'
 export default {
   components:{
     AppLayout,
+    History,
+    Memory
   },
     data () {
-     
+    
     return {
       drawer: null,
       items: [
-        { title: 'Memory' },
-        { title: 'History' },
+        
       ],
     }
   },
@@ -73,9 +65,9 @@ export default {
 
 /*=========================================>> CONFIG. MOBILE <<=========================================== */
 
- @media (min-width: 320px){
-   .v-btn{
-     max-height: 32px !important;
+@media (min-width: 320px){
+  .v-btn{
+    max-height: 32px !important;
     color: #e6dfdf !important;
     margin: -2px -6px 0px 0px;
   }
@@ -87,22 +79,22 @@ export default {
     background-color:  #cfcdcd !important;
     color: darkblue !important;
   }
-    .posicaoBTN{
-     max-width: 20%;
-     max-height: 100px;
-     margin-right: 40px;
-     float: right;
-     margin: 0;
-     position: relative;
-   }
- }
+  .posicaoBTN{
+    max-width: 20%;
+    max-height: 100px;
+    margin-right: 40px;
+    float: right;
+    margin: 0;
+    position: relative;
+  }
+}
 
 
 /*=========================================>> CONFIG. TABLET <<=========================================== */
 
 
- @media (min-width: 768px){
-   .v-btn{
+@media (min-width: 768px){
+  .v-btn{
       max-height: 32px !important;
       color: #e6dfdf !important;
       min-width: 35px !important;
@@ -122,7 +114,7 @@ export default {
     margin-right: 235px;
     float: right;    
     position: relative;
-   }
+  }
 }
 /*=========================================>> CONFIG. DESKTOP <<=========================================== */
 

@@ -6,26 +6,19 @@
               <h3>CALCULADORA</h3>
           </div>
           <div class="Resultado">
-            <h3 class="result">{{resultadoCalc || '0'}}</h3><!--ARRUMAR O LAYOUT-->
+            <h3 class="result">{{resultadoCalc || '0'}}</h3>
           </div>
           <div class="Resultado">
-            <DisplayHistorico/>
+
+            <DisplayHistorico />
           </div>
           <div maxlength="10" class="Valores">
-              <h2  class="valorTela" v-show="!valQuadrado">{{ valorAparente || '0' }}</h2><!--REPASSA O VALOR QUE O valorAparente RECEBEU OU '0'-->
+
+              <h2  class="valorTela" v-show="!escondeValor">{{ valorAparente || '0' }}</h2>
           </div>    
         </div > 
       </v-container>
             <v-app cols="12" >
-
-                <div class="BotoesF1" cols="2">
-                    <button class="bts"> MC </button>
-                    <button class="bts"> MR </button>
-                    <button class="bts"> M+ </button>
-                    <button class="bts"> M- </button>
-                    <button class="bts"> MS </button>
-                    <button class="bts"> M </button>                  
-                </div>
 
                 <div class="BotoesF2" cols="3">
                     <button @click="porcento" class="btsF2"> % </button>
@@ -38,7 +31,7 @@
 
                     <div class=" BotoesC1 " cols="3">
                         <button @click="deletarTudo" class="btsC1"> CE </button>
-                        <button @click="deletar" class="btsC1"> C </button> <!--//RESPONSÁVEL POR  DELETAR O VALOR TOTAL-->
+                        <button @click="deletar" class="btsC1"> C </button>
                         <button @click="DeleteUm" class="btsC1"> DEL </button>
                         <button @click="divisao" class="btsC1"> / </button>
                     </div>
@@ -77,6 +70,7 @@
 <script>
 import DisplayHistorico from './Display/DisplayHistorico.vue'
 
+
     export default {
     
       components:{
@@ -85,168 +79,14 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
         data(){
           return{
             
-            resultadoCalc: '',
-            valorAparente : '', 
-
-            ultimoNumero: null,
-            operador: null,
-            clickOperador: false,
-            valQuadrado: false
           };
         },
 
-        methods:{
-/*------------------------=>=>=>=>=>=>=>=>=>=> DELETA OS VALORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
-
-            deletar(){
-              this.valQuadrado = false;
-              this.valorAparente = '';          
-              this.resultadoCalc = '';       
-            },
-            deletarTudo(){ 
-              this.valQuadrado = false;          
-                this.valorAparente = '';               
-            },
-
-            DeleteUm(){
-              this.valQuadrado = false;
-              this.valorAparente = this.valorAparente.substr( 0, this.valorAparente.length -1);
-              this.valorAparente;
-            },
-
-/*------------------------=>=>=>=>=>=>=>=>=>=> OPERADOR +/- || % || NUMERO CLICADO || , <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
-
-            maisMenos(){
-              this.valQuadrado = false;
-              this.valorAparente = this.valorAparente.charAt(0) === '-' 
-              ? this.valorAparente.slice(1) : `-${this.valorAparente}`; 
-            },
-
-            porcento(){  
-              this.valQuadrado = false;        
-              if(this.valorAparente === ''){ 
-                this.valorAparente = 0;
-                //console.log('Valor zero'); 
-              } else {
-                this.valorAparente = `${parseFloat(this.valorAparente) / 100}`;
-              }
-             // console.log('PORCENTAGEM FUNCIONANDO!')
-            },
-
-            numero(valor){
-                if(this.clickOperador){
-                  this.valorAparente = ''; 
-                  this.clickOperador = false; 
-                }
-               
-                this.valorAparente =`${this.valorAparente}${valor}`;   
-            },
-
-            virgula(){
-                if(this.valorAparente === ''){
-                    this.valorAparente = '0,'
-                  } else if(this.valorAparente.indexOf(',') === -1 ){ 
-                  this.numero(',');      
-                }              
-            },
-
-/*------------------------=>=>=>=>=>=>=>=>=>=> UTILIZADO NOS OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
-
-            setValue(){
-                this.ultimoNumero = this.valorAparente;
-                this.clickOperador = true; 
-            },
-
-/*------------------------=>=>=>=>=>=>=>=>=>=> RETORNA O RESULTADO <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
-
-            Calc(){         
-             if(this.valorAparente === ''){ 
-                 this.valorAparente = 0
-                }else{
-                   this.resultadoCalc = `${this.operador( 
-                    parseFloat(this.ultimoNumero),
-                    parseFloat(this.valorAparente), 
-                )}`;
-                }
-            },
-
-/*------------------------=>=>=>=>=>=>=>=>=>=> OPERADORES <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
-
-            divisao(){
-              this.valQuadrado = false;
-              if(this.valorAparente === ''){
-                this.valorAparente = ''
-                } else{
-                  this.valorAparente.indexOf('/');
-                  this.numero('/') 
-                }
-              this.operador = (value1, value2) => value1 / value2;
-              this.setValue(); 
-            },
-
-            multiplicar(){
-              this.valQuadrado = false;
-              if(this.valorAparente === ''){
-                this.valorAparente = ''
-                } else{
-                  this.valorAparente.indexOf('x');
-                  this.numero('x')
-                }
-               this.operador = (value1, value2) => value1 * value2;
-               this.setValue();
-            },
-
-            subtrair(){
-              this.valQuadrado = false;
-              if(this.valorAparente === ''){
-                this.valorAparente = ''
-                } else{
-                  this.valorAparente.indexOf('-');
-                  this.numero('-') 
-                }
-              this.operador = (value1, value2) => value1 - value2;
-              this.setValue();
-            },
-
-            adicao(){
-              this.valQuadrado = false;
-              if(this.valorAparente === ''){
-                this.valorAparente = ''
-                } else{
-                  this.valorAparente.indexOf('+');
-                  this.numero('+')
-                }
-                this.operador = (value1, value2) => value1 + value2;
-                this.setValue();        
-            },
-
-            valorQuadrado(){
-                this.valQuadrado = true;
-                this.valorAparente = this.valorAparente * this.valorAparente;
-                this.resultadoCalc = this.valorAparente;    
-               
-           },
-           raiz(){
-             this.valQuadrado = true;
-              this.valorAparente = Math.sqrt(this.valorAparente);
-              this.resultadoCalc = this.valorAparente;
-          },
-
-           xum(){
-             this.valQuadrado = true;
-             if(this.valorAparente === '' || this.valorAparente === '0'){
-               this.resultadoCalc = this.valorAparente = 'Não é possível dividir por zero!'
-             }else{
-               this.valorAparente = 1/(this.valorAparente);
-               this.resultadoCalc = this.valorAparente;
-             }
-          },
-        }
-    }
+ 
 
 /*------------------------=>=>=>=>=>=>=>=>=>=> CRIANDO FUNCIONALIDADES MS || MC || MR || M- || M+  <=<=<=<=<=<=<=<=<=<=<=<=<=<=----------------------------*/
 
-
+    }
 
 
 
@@ -350,10 +190,15 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
         float: right;
         width: 100%;
         height: 50px; 
-        margin-top: 80px;
+        margin-top: 25px;
         bottom:0;
         padding-bottom: 0;
     }
+        .Resultado{
+          font-size: 20px;
+          width: 100%;
+          height: 50px; 
+        }
       h2{
       white-space: nowrap; 
       text-align: right;
@@ -366,11 +211,6 @@ import DisplayHistorico from './Display/DisplayHistorico.vue'
     .result{
       opacity: 0.5;
       float: right;
-    }
-    .Resultado{
-      font-size: 20px;
-      width: 100%;
-      height: 50px; 
     }
      h2{
       white-space: nowrap; 
